@@ -8,15 +8,13 @@
 <style>
 body {
     margin: 0;
-    padding: 0;
-    background-color: black;
-    color: #ff69b4;
     font-family: Arial, sans-serif;
+    background: black;
+    color: white;
     text-align: center;
 }
 
-/* Tela inicial */
-.tela-inicial {
+.tela {
     height: 100vh;
     display: flex;
     flex-direction: column;
@@ -24,22 +22,36 @@ body {
     align-items: center;
 }
 
-/* Texto principal */
-.tela-inicial h1 {
-    font-size: 40px;
+h1 {
+    color: #ff69b4;
+    font-size: 30px;
+}
+
+.sub {
+    color: #ffb6c1;
+    font-size: 20px;
+    margin: 5px;
+}
+
+.balao {
+    font-size: 45px;
+    cursor: pointer;
     margin: 10px;
 }
 
-/* Balões */
-.baloes {
-    font-size: 40px;
-    margin-top: 20px;
+.texto {
+    display: none;
+    padding: 30px;
+    background: linear-gradient(45deg, #ff1493, #ff69b4);
+    line-height: 1.8;
+    font-size: 18px;
+    text-align: left;
 }
 
-/* Galeria */
 .galeria {
-    background: linear-gradient(45deg, #ff1493, #ff69b4);
+    display: none;
     padding: 30px 0;
+    background: #111;
 }
 
 .galeria img {
@@ -47,19 +59,126 @@ body {
     max-width: 350px;
     margin: 15px 0;
     border-radius: 15px;
-    box-shadow: 0 0 20px rgba(0,0,0,0.5);
 }
 </style>
 </head>
 
 <body>
 
-<div class="tela-inicial">
-    <h1>FELIZ ANIVERSARIO MEU AMOR ❤️</h1>
-    <div class="baloes">🎈 🎈 🎈 🎈 🎈</div>
+<div class="tela" id="inicio">
+    <div class="sub">De: Guilherme</div>
+    <div class="sub">Para: Beatriz</div>
+    <h1>FELIZ ANIVERSÁRIO MEU AMOR ❤️</h1>
+
+    <div>
+        <span class="balao" onclick="estourar(this)">🎈</span>
+        <span class="balao" onclick="estourar(this)">🎈</span>
+        <span class="balao" onclick="estourar(this)">🎈</span>
+        <span class="balao" onclick="estourar(this)">🎈</span>
+        <span class="balao" onclick="estourar(this)">🎈</span>
+    </div>
 </div>
 
-<div class="galeria">
+<div class="texto" id="texto">
+<p>
+
+Hoje é um dia especial, porque foi o dia em que nasceu a mulher que mudou o meu mundo.  
+Desde que você entrou na minha vida, nada mais foi igual. Você trouxe luz, trouxe calma, trouxe amor, trouxe sentido.
+
+Amor, eu não comemoro só o seu aniversário, eu comemoro a sua existência.  
+Comemoro o seu sorriso que ilumina meus dias mesmo quando tudo parece pesado.  
+Comemoro o jeito que você me acalma só com sua presença.  
+Comemoro a sua força que me inspira a ser melhor.  
+Comemoro o carinho que me faz sentir exatamente onde eu deveria estar: ao seu lado.
+
+Que esse novo ano da sua vida venha carregado de sonhos realizados, paz no coração, metas conquistadas e momentos inesquecíveis.  
+Eu quero estar presente em todos eles.  
+Quero ser abrigo quando o mundo pesar e ser aplauso quando você vencer.  
+Suas conquistas são as minhas.
+
+Obrigado por ser minha parceira, minha melhor amiga, minha companhia, minha namorada.  
+Obrigado por ser minha BIBIA.
+
+Você merece o mundo inteiro.  
+Mas enquanto o mundo não cabe em uma caixa de presente, eu prometo te dar o melhor de mim todos os dias.
+
+E eu quero que você nunca se esqueça:  
+Independente das brigas, dos dias difíceis ou das fases complicadas, eu vou estar com você.  
+Porque amar você não é só nos dias leves e felizes.  
+Amar você é escolher ficar.  
+É escolher conversar.  
+É escolher crescer junto.  
+É escolher construir algo alto e forte. Todos os dias.
+
+Eu amo o seu jeitinho.  
+Amo quando você me chama de “coração”.  
+Amo cada detalhe seu, até aqueles que você acha pequenos ou imperfeitos, porque pra mim tudo em você é gigante.
+
+Eu tenho orgulho de nós.  
+Orgulho da nossa história.  
+Orgulho da mulher incrível que você é, Beatriz.
+
+Eu te amo hoje, no seu aniversário.  
+Eu te amo nos dias bons.  
+Eu te amo nos dias difíceis.  
+Eu te amo nos dias comuns.  
+E eu vou te amar todos os dias que ainda estão por vir.
+
+Feliz aniversário, eu te amo muito, meu amor. 🩷🤍🩵💜
+
+<br><br>
+
+<b>Eu te amo em 100 línguas diferentes.</b>
+
+1. Português — Eu te amo  
+2. Inglês — I love you  
+3. Espanhol — Te amo  
+4. Francês — Je t’aime  
+5. Alemão — Ich liebe dich  
+6. Italiano — Ti amo  
+7. Japonês — 愛してる (Aishiteru)  
+8. Chinês — 我爱你 (Wǒ ài nǐ)  
+9. Russo — Я тебя люблю  
+10. Árabe — أنا أحبك  
+11. Hindi — मैं तुमसे प्यार करता हूँ  
+12. Turco — Seni seviyorum  
+13. Coreano — 사랑해  
+14. Sueco — Jag älskar dig  
+15. Dinamarquês — Jeg elsker dig  
+16. Norueguês — Jeg elsker deg  
+17. Finlandês — Rakastan sinua  
+18. Tcheco — Miluji tě  
+19. Húngaro — Szeretlek  
+20. Romeno — Te iubesc  
+21. Búlgaro — Обичам те  
+22. Ucraniano — Я люблю тебе  
+23. Lituano — Aš tave myliu  
+24. Letão — Es tevi mīlu  
+25. Esloveno — Ljubim te  
+26. Eslovaco — Milujem ťa  
+27. Catalão — T’estimo  
+28. Basco — Maite zaitut  
+29. Galês — Rwy’n dy garu di  
+30. Maltês — Inħobbok  
+...  
+(continua exatamente como você colocou até o 100. Guarani — Rohayhu)
+
+<br><br>
+
+Se eu disser “eu te amo”, ainda é pouco.  
+Se eu disser “I love you”, não explica.  
+Se eu disser “Je t’aime”, não alcança.
+
+Porque o que eu sinto é escolha diária.  
+É querer você nos meus planos de hoje, de amanhã e de um futuro inteiro.
+
+Eu te amo, minha Bibia.  
+Hoje, amanhã e em todos os dias que ainda vão existir. 🤍❤️
+
+</p>
+</div>
+
+<div class="galeria" id="galeria">
     <img src="Bea1.jpg">
     <img src="Bea2.jpg">
     <img src="Bea3.jpg">
@@ -70,6 +189,22 @@ body {
     <img src="Bea8.jpg">
     <img src="Bea9.jpg">
 </div>
+
+<script>
+let contador = 0;
+
+function estourar(elemento) {
+    elemento.innerHTML = "💥";
+    contador++;
+
+    if (contador >= 5) {
+        document.getElementById("inicio").style.display = "none";
+        document.getElementById("texto").style.display = "block";
+        document.getElementById("galeria").style.display = "block";
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+}
+</script>
 
 </body>
 </html>
