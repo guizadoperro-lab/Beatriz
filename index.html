@@ -17,6 +17,7 @@ body{
 
 h1{
     margin-top:40px;
+    display:none; /* escondido até estourar balões */
 }
 
 button{
@@ -27,7 +28,7 @@ button{
     cursor:pointer;
     margin:10px;
     transition:0.3s;
-    display:none; /* começa escondido */
+    display:none; /* escondido até estourar balões */
 }
 
 #sim{
@@ -39,7 +40,6 @@ button{
     background:#444;
     color:white;
     position:absolute;
-    display:none; /* começa escondido */
 }
 
 #mensagemCompleta{
@@ -112,8 +112,8 @@ button{
 .balao{
     position:fixed;
     bottom:-60px;
-    width:50px;
-    height:60px;
+    width:60px;
+    height:70px;
     background:#ff4da6;
     border-radius:50% 50% 50% 50%;
     color:white;
@@ -122,14 +122,22 @@ button{
     align-items:center;
     justify-content:center;
     cursor:pointer;
-    transition:0.2s;
     font-size:18px;
     user-select:none;
+    box-shadow:0 4px 10px rgba(0,0,0,0.3);
+    animation: subirBalao 4s linear forwards;
+}
+
+@keyframes subirBalao{
+    from{bottom:-60px;}
+    to{bottom:80vh;}
 }
 </style>
 </head>
 
 <body>
+
+<div id="baloonScreen"></div> <!-- tela inicial dos balões -->
 
 <h1>17 anos da mulher da minha vida 💖</h1>
 <p>Quando você fizer 25… vai se casar comigo né? 💍</p>
@@ -176,9 +184,69 @@ E eu vou te amar todos os outros dias que ainda estão por vir.
 </div>
 
 <script>
-let contadorNao = 0;
+let baloes = 17;
+let balaoAtual = 1;
+
+// criar o balão da tela inicial
+function criarBalao(numero){
+    let balao = document.createElement("div");
+    balao.classList.add("balao");
+    balao.innerHTML = numero;
+    balao.style.left = Math.random()*90 + "vw";
+    document.body.appendChild(balao);
+
+    // animação de subir (já no CSS)
+    
+    balao.addEventListener("click", function(){
+        // animação de estouro (escala e sumir)
+        balao.style.transition = "0.3s";
+        balao.style.transform = "scale(1.5)";
+        balao.style.opacity = 0;
+
+        // confete pequeno
+        for(let i=0;i<10;i++){
+            criarConfeteEstouro(balao.offsetLeft + 25, balao.offsetTop + 25);
+        }
+
+        setTimeout(()=>{ balao.remove(); },300);
+
+        // próximo balão
+        balaoAtual++;
+        if(balaoAtual <= baloes){
+            criarBalao(balaoAtual);
+        } else {
+            // depois do último balão, mostra a pergunta e botões
+            document.querySelector("h1").style.display = "block";
+            document.querySelector("p").style.display = "block";
+            document.getElementById("sim").style.display = "inline-block";
+            document.getElementById("nao").style.display = "inline-block";
+        }
+    });
+}
+
+// confete ao estourar o balão
+function criarConfeteEstouro(x, y){
+    let confete = document.createElement("div");
+    confete.classList.add("confete");
+    let cores = ["#ff4da6", "#ffd700", "#00c3ff", "#00ff9d", "#ff6600", "#ffffff"];
+    confete.style.backgroundColor = cores[Math.floor(Math.random()*cores.length)];
+    confete.style.left = x + "px";
+    confete.style.top = y + "px";
+    confete.style.width = "6px";
+    confete.style.height = "6px";
+    confete.style.position = "absolute";
+    confete.style.borderRadius = "50%";
+    confete.style.animationDuration = (1 + Math.random()*1) + "s";
+    document.body.appendChild(confete);
+    setTimeout(()=>{ confete.remove(); },1500);
+}
+
+// inicia primeiro balão
+criarBalao(balaoAtual);
+
 
 // BOTÃO NÃO FUGINDO SEM PARAR
+let contadorNao = 0;
 function fugir(){
     const botao = document.getElementById("nao");
     const largura = window.innerWidth - botao.offsetWidth - 20;
@@ -192,7 +260,8 @@ function fugir(){
 document.getElementById("nao").addEventListener("mouseover", fugir);
 document.getElementById("nao").addEventListener("click", function(e){ e.preventDefault(); fugir(); });
 
-// CORAÇÕES E CONFETES
+
+// CORAÇÕES CAINDO CONSTANTE
 function criarCoracaoCaindo(){
     let heart = document.createElement("div");
     heart.classList.add("heartFall");
@@ -204,6 +273,7 @@ function criarCoracaoCaindo(){
 }
 setInterval(criarCoracaoCaindo, 300);
 
+// CONFETE ALEATÓRIO
 function criarConfete(){
     let confete = document.createElement("div");
     confete.classList.add("confete");
@@ -223,6 +293,7 @@ function aceitou(){
     document.getElementById("nao").style.display = "none";
     document.getElementById("mensagemCompleta").style.display = "block";
 
+    // corações subindo
     for(let i=0; i<40; i++){
         let heart = document.createElement("div");
         heart.classList.add("heart");
@@ -232,48 +303,12 @@ function aceitou(){
         document.body.appendChild(heart);
         setTimeout(()=>{ heart.remove(); },2000);
     }
+
+    // muito confete
     for(let i=0; i<200; i++){
         criarConfete();
     }
 }
-
-// BALÕES INTERATIVOS DE BAIXO PRA CIMA
-let baloes = 17;
-let balaoAtual = 1;
-
-function criarBalao(numero){
-    let balao = document.createElement("div");
-    balao.classList.add("balao");
-    balao.innerHTML = numero;
-    balao.style.left = Math.random()*90 + "vw";
-    document.body.appendChild(balao);
-
-    // animação de subir
-    balao.animate([
-        { bottom: '-60px' },
-        { bottom: '80vh' }
-    ],{
-        duration: 4000,
-        easing: 'linear'
-    });
-
-    balao.addEventListener("click", function(){
-        balao.remove();
-        balaoAtual++;
-        if(balaoAtual <= baloes){
-            criarBalao(balaoAtual);
-        } else {
-            // depois do último, mostra os botões
-            document.getElementById("sim").style.display = "inline-block";
-            document.getElementById("nao").style.display = "inline-block";
-        }
-    });
-}
-
-// inicia o primeiro balão
-criarBalao(balaoAtual);
-
 </script>
-
 </body>
 </html>
