@@ -4,7 +4,6 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>17 anos da Mulher da Minha Vida</title>
-
 <style>
 body{
     margin:0;
@@ -17,7 +16,13 @@ body{
 
 h1{
     margin-top:40px;
-    display:none; /* escondido até estourar balões */
+    display:none;
+}
+
+#pergunta{
+    display:none;
+    font-size:18px;
+    margin-bottom:20px;
 }
 
 button{
@@ -28,7 +33,7 @@ button{
     cursor:pointer;
     margin:10px;
     transition:0.3s;
-    display:none; /* escondido até estourar balões */
+    display:none;
 }
 
 #sim{
@@ -42,27 +47,13 @@ button{
     position:absolute;
 }
 
-#mensagemCompleta{
-    display:none;
-    margin-top:40px;
-    font-size:18px;
-    line-height:1.6;
-    max-width:850px;
-    margin-left:auto;
-    margin-right:auto;
-}
-
-.foto{
-    width:110px;
-    border-radius:15px;
-    margin:15px;
-    box-shadow:0 4px 10px rgba(0,0,0,0.2);
-}
-
-.foto-container{
-    display:flex;
-    justify-content:center;
-    flex-wrap:wrap;
+/* balões */
+.balao{
+    position:fixed;
+    bottom:-120px;
+    font-size:40px;
+    cursor:pointer;
+    transition: transform 0.2s;
 }
 
 /* CORAÇÃO SUBINDO */
@@ -108,42 +99,36 @@ button{
     }
 }
 
-/* BALÕES INTERATIVOS */
-.balao{
-    position:fixed;
-    bottom:-60px;
-    width:60px;
-    height:70px;
-    background:#ff4da6;
-    border-radius:50% 50% 50% 50%;
-    color:white;
-    font-weight:bold;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    cursor:pointer;
-    font-size:18px;
-    user-select:none;
-    box-shadow:0 4px 10px rgba(0,0,0,0.3);
-    animation: subirBalao 4s linear forwards;
+/* Fotos */
+.foto{
+    width:110px;
+    border-radius:15px;
+    margin:15px;
+    box-shadow:0 4px 10px rgba(0,0,0,0.2);
 }
-
-@keyframes subirBalao{
-    from{bottom:-60px;}
-    to{bottom:80vh;}
+.foto-container{
+    display:flex;
+    justify-content:center;
+    flex-wrap:wrap;
+}
+#mensagemCompleta{
+    display:none;
+    margin-top:40px;
+    font-size:18px;
+    line-height:1.6;
+    max-width:850px;
+    margin-left:auto;
+    margin-right:auto;
 }
 </style>
 </head>
-
 <body>
 
-<div id="baloonScreen"></div> <!-- tela inicial dos balões -->
-
 <h1>17 anos da mulher da minha vida 💖</h1>
-<p>Quando você fizer 25… vai se casar comigo né? 💍</p>
+<p id="pergunta">Quando você fizer 25… vai se casar comigo né? 💍</p>
 
 <button id="sim" onclick="aceitou()">Sim 💍</button>
-<button id="nao" onmouseover="fugir()">Não 😅</button>
+<button id="nao">Não 😅</button>
 
 <div id="mensagemCompleta">
 
@@ -155,7 +140,7 @@ button{
 <img src="Bea3.jpg" class="foto">
 </div>
 
-<p>Amor, eu nao comemoro só o seu aniversário, comemoro a sua existência, comemoro o seu sorriso que todo dia que eu vejo quando a gente vai conversar ilumina meus dias mesmo quando tudo parecer pesado. Comemoro o jeito que vc me acalma só com sua presença, comemoro a sua força que vc me inspira a ser melhor e o jeito que vc faz eu me sentir o homem mais forte do mundo, comemoro a sua força que me inspira a ser melhor, comemoro o carinho que me faz sentir exatamente onde eu deveria estar( ao seu lado. ) que esse novo ano da sua vida venha carregado de sonhos realizados, paz no coração, metas conquistadas e momentos inesquecíveis, eu espero de verdade estar presente em todos eles, quero ser abrigo quando o mundo pesar e ser aplauso quando vc vencer, quero estar nas suas conquistas, pq suas conquistas são as minhas. obrigado por ser minha parceira. minha melhor amiga, minha companhia, minha namorada. OBRIGADO POR SER MINHA BIBIA. Voce merece o mundo inteiro meu amor, merece tudo de mais bonito que existe, mas enquanto o mundo nao cabe em uma caixa de presente, eu prometo de dar o melhor de mim todos os dias.</p>
+<p>Amor, eu nao comemoro só o seu aniversário, comemoro a sua existência, comemoro o seu sorriso que todo dia que eu vejo quando a gente vai conversar, ilumina meus dias mesmo quando tudo parecer pesado. Comemoro o jeito que vc me acalma só com sua presença, comemoro a sua força que vc me inspira a ser melhor e o jeito que vc faz eu me sentir o homem mais forte do mundo, comemoro a sua força que me inspira a ser melhor, comemoro o carinho que me faz sentir exatamente onde eu deveria estar( ao seu lado. ) que esse novo ano da sua vida venha carregado de sonhos realizados, paz no coração, metas conquistadas e momentos inesquecíveis, eu espero de verdade estar presente em todos eles, quero ser abrigo quando o mundo pesar e ser aplauso quando vc vencer, quero estar nas suas conquistas, pq suas conquistas são as minhas. obrigado por ser minha parceira. minha melhor amiga, minha companhia, minha namorada. OBRIGADO POR SER MINHA BIBIA. Voce merece o mundo inteiro meu amor, merece tudo de mais bonito que existe, mas enquanto o mundo nao cabe em uma caixa de presente, eu prometo de dar o melhor de mim todos os dias.</p>
 
 <div class="foto-container">
 <img src="Bea4.jpg" class="foto">
@@ -181,13 +166,37 @@ E eu vou te amar todos os outros dias que ainda estão por vir.
 
 <p>Feliz aniversário, Eu te amo Muito. Meu amor.🩷🤍🩵💜</p>
 
+<p>
+1. Português — Eu te amo<br>
+2. Inglês — I love you<br>
+3. Espanhol — Te amo<br>
+4. Francês — Je t’aime<br>
+5. Alemão — Ich liebe dich<br>
+6. Italiano — Ti amo<br>
+7. Japonês — 愛してる (Aishiteru)<br>
+8. Chinês — 我爱你 (Wǒ ài nǐ)<br>
+9. Russo — Я тебя люблю<br>
+10. Árabe — أنا أحبك<br>
+11. Hindi — Main tumse pyaar karta hoon<br>
+12. Turco — Seni seviyorum<br>
+13. Coreano — 사랑해<br>
+14. Sueco — Jag älskar dig<br>
+15. Dinamarquês — Jeg elsker dig<br>
+16. Norueguês — Jeg elsker deg<br>
+17. Finlandês — Rakastan sinua
+</p>
+
+<p>Eu te amo em 100 línguas diferentes. Eu escrevi em português, inglês, japonês, árabe, em todas elas, mas nenhuma consegue traduzir exatamente oq eu sinto por você, minha princesa.</p>
+
+<p>Pq oq eu sinto é maior que qualquer coisa, é escolha diária, é querer vc nos meus planos de hj, de amanhã e de um futuro inteiro. Eu te amo, minha bibia. Hoje, amanhã e em todos os dias que ainda vão existir. 🤍❤️</p>
+
 </div>
 
 <script>
-let baloes = 17;
+let contadorNao = 0;
 let balaoAtual = 1;
 
-// criar o balão da tela inicial
+// cria os 17 balões
 function criarBalao(numero){
     let balao = document.createElement("div");
     balao.classList.add("balao");
@@ -195,102 +204,60 @@ function criarBalao(numero){
     balao.style.left = Math.random()*90 + "vw";
     document.body.appendChild(balao);
 
-    // animação de subir (já no CSS)
-    
-    balao.addEventListener("click", function(){
-        // animação de estouro (escala e sumir)
-        balao.style.transition = "0.3s";
-        balao.style.transform = "scale(1.5)";
-        balao.style.opacity = 0;
+    // anima balão subindo
+    let pos = -100;
+    let interval = setInterval(()=>{
+        if(pos > window.innerHeight/2 - 50) clearInterval(interval);
+        pos += 2;
+        balao.style.bottom = pos + "px";
+    }, 20);
 
-        // confete pequeno
-        for(let i=0;i<10;i++){
-            criarConfeteEstouro(balao.offsetLeft + 25, balao.offsetTop + 25);
-        }
+    balao.addEventListener("click", ()=>{
+        // animação estourar
+        balao.style.transform = "scale(0)";
+        setTimeout(()=>{ balao.remove(); },200);
 
-        setTimeout(()=>{ balao.remove(); },300);
-
-        // próximo balão
         balaoAtual++;
-        if(balaoAtual <= baloes){
-            criarBalao(balaoAtual);
-        } else {
-            // depois do último balão, mostra a pergunta e botões
-            document.querySelector("h1").style.display = "block";
-            document.querySelector("p").style.display = "block";
-            document.getElementById("sim").style.display = "inline-block";
-            document.getElementById("nao").style.display = "inline-block";
-        }
+        if(balaoAtual <= 17) criarBalao(balaoAtual);
+        else mostrarPergunta();
     });
 }
 
-// confete ao estourar o balão
-function criarConfeteEstouro(x, y){
-    let confete = document.createElement("div");
-    confete.classList.add("confete");
-    let cores = ["#ff4da6", "#ffd700", "#00c3ff", "#00ff9d", "#ff6600", "#ffffff"];
-    confete.style.backgroundColor = cores[Math.floor(Math.random()*cores.length)];
-    confete.style.left = x + "px";
-    confete.style.top = y + "px";
-    confete.style.width = "6px";
-    confete.style.height = "6px";
-    confete.style.position = "absolute";
-    confete.style.borderRadius = "50%";
-    confete.style.animationDuration = (1 + Math.random()*1) + "s";
-    document.body.appendChild(confete);
-    setTimeout(()=>{ confete.remove(); },1500);
+// mostra pergunta e botões depois de estourar 17 balões
+function mostrarPergunta(){
+    document.querySelector("h1").style.display = "block";
+    document.getElementById("pergunta").style.display = "block";
+    document.getElementById("sim").style.display = "inline-block";
+    document.getElementById("nao").style.display = "inline-block";
 }
 
-// inicia primeiro balão
-criarBalao(balaoAtual);
-
-
-// BOTÃO NÃO FUGINDO SEM PARAR
-let contadorNao = 0;
+// botão NÃO que foge infinitamente
 function fugir(){
     const botao = document.getElementById("nao");
     const largura = window.innerWidth - botao.offsetWidth - 20;
     const altura = window.innerHeight - botao.offsetHeight - 20;
-    botao.style.position = "fixed";
     botao.style.left = Math.random() * largura + "px";
     botao.style.top = Math.random() * altura + "px";
     contadorNao++;
-    botao.style.transition = contadorNao > 5 ? "0.05s" : "0.2s";
+    if(contadorNao > 5){
+        botao.style.transition = "0.05s";
+    } else {
+        botao.style.transition = "0.2s";
+    }
 }
+
 document.getElementById("nao").addEventListener("mouseover", fugir);
-document.getElementById("nao").addEventListener("click", function(e){ e.preventDefault(); fugir(); });
-
-
-// CORAÇÕES CAINDO CONSTANTE
-function criarCoracaoCaindo(){
-    let heart = document.createElement("div");
-    heart.classList.add("heartFall");
-    heart.innerHTML = "💗";
-    heart.style.left = Math.random()*100 + "vw";
-    heart.style.animationDuration = (3 + Math.random()*3) + "s";
-    document.body.appendChild(heart);
-    setTimeout(()=>{ heart.remove(); },6000);
-}
-setInterval(criarCoracaoCaindo, 300);
-
-// CONFETE ALEATÓRIO
-function criarConfete(){
-    let confete = document.createElement("div");
-    confete.classList.add("confete");
-    let cores = ["#ff4da6", "#ffd700", "#00c3ff", "#00ff9d", "#ff6600", "#ffffff"];
-    confete.style.backgroundColor = cores[Math.floor(Math.random()*cores.length)];
-    confete.style.left = Math.random()*100 + "vw";
-    confete.style.animationDuration = (3 + Math.random()*3) + "s";
-    document.body.appendChild(confete);
-    setTimeout(()=>{ confete.remove(); },6000);
-}
+document.getElementById("nao").addEventListener("click", fugir);
 
 // QUANDO CLICA NO SIM
 function aceitou(){
+    // some com pergunta e botões
     document.querySelector("h1").style.display = "none";
-    document.querySelector("p").style.display = "none";
+    document.getElementById("pergunta").style.display = "none";
     document.getElementById("sim").style.display = "none";
     document.getElementById("nao").style.display = "none";
+
+    // mostra mensagem completa
     document.getElementById("mensagemCompleta").style.display = "block";
 
     // corações subindo
@@ -304,11 +271,36 @@ function aceitou(){
         setTimeout(()=>{ heart.remove(); },2000);
     }
 
-    // muito confete
-    for(let i=0; i<200; i++){
-        criarConfete();
-    }
+    // MUITO confete
+    for(let i=0; i<200; i++) criarConfete();
 }
+
+// CORAÇÃO CAINDO CONSTANTE
+function criarCoracaoCaindo(){
+    let heart = document.createElement("div");
+    heart.classList.add("heartFall");
+    heart.innerHTML = "💗";
+    heart.style.left = Math.random()*100 + "vw";
+    heart.style.animationDuration = (3 + Math.random()*3) + "s";
+    document.body.appendChild(heart);
+    setTimeout(()=>{ heart.remove(); },6000);
+}
+setInterval(criarCoracaoCaindo, 300);
+
+// CONFETE
+function criarConfete(){
+    let confete = document.createElement("div");
+    confete.classList.add("confete");
+    let cores = ["#ff4da6", "#ffd700", "#00c3ff", "#00ff9d", "#ff6600", "#ffffff"];
+    confete.style.backgroundColor = cores[Math.floor(Math.random()*cores.length)];
+    confete.style.left = Math.random()*100 + "vw";
+    confete.style.animationDuration = (3 + Math.random()*3) + "s";
+    document.body.appendChild(confete);
+    setTimeout(()=>{ confete.remove(); },6000);
+}
+
+// inicia primeiro balão
+criarBalao(1);
 </script>
 </body>
 </html>
