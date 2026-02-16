@@ -63,7 +63,7 @@ body {
   to { transform: scale(2); opacity: 0; }
 }
 
-/* Nome em néon */
+/* Nome neon */
 .neon {
   font-size: 60px;
   font-weight: bold;
@@ -82,17 +82,29 @@ body {
   to { opacity: 1; }
 }
 
-/* Mensagem */
-.final-message {
-  padding: 40px;
-  max-width: 900px;
-  margin: auto;
-  line-height: 1.6;
+/* Galeria organizada */
+.photo-gallery {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 15px;
+  max-width: 800px;
+  margin: 40px auto;
+}
+
+.photo-gallery img {
+  width: 100%;
+  border-radius: 15px;
+  box-shadow: 0 0 20px rgba(255,255,255,0.5);
+  transition: 0.3s;
+}
+
+.photo-gallery img:hover {
+  transform: scale(1.05);
 }
 
 /* Botão final */
 .final-btn {
-  margin-top: 40px;
+  margin-top: 30px;
   padding: 15px 30px;
   font-size: 20px;
   border: none;
@@ -122,18 +134,6 @@ body {
     transform: translateY(110vh);
     opacity: 0;
   }
-}
-
-/* Fotos */
-.photo {
-  position: absolute;
-  width: 120px;
-  animation: float 6s infinite alternate ease-in-out;
-}
-
-@keyframes float {
-  from { transform: translateY(0px); }
-  to { transform: translateY(20px); }
 }
 
 canvas {
@@ -193,12 +193,25 @@ function showFinalButton() {
 function showFinal() {
   document.body.innerHTML += `
   <div class="final-message">
-  <div class="neon">Beatriz 💖</div>
-  <h1>Feliz 17 anos minha Bibia ❤️</h1>
-  <p>COLE AQUI SEU TEXTO COMPLETO</p>
-  <button class="final-btn" onclick="alert('Então já fica prometido 😌💍')">
-  Casa comigo quando fizer 25?
-  </button>
+    <div class="neon">Beatriz 💖</div>
+    <h1>Feliz 17 anos minha Bibia ❤️</h1>
+    <p>COLE AQUI SEU TEXTO COMPLETO</p>
+
+    <div class="photo-gallery">
+      <img src="Bea1.jpg">
+      <img src="Bea2.jpg">
+      <img src="Bea3.jpg">
+      <img src="Bea4.jpg">
+      <img src="Bea5.jpg">
+      <img src="Bea6.jpg">
+      <img src="Bea7.jpg">
+      <img src="Bea8.jpg">
+      <img src="Bea9.jpg">
+    </div>
+
+    <button class="final-btn" onclick="alert('Então já fica prometido 😌💍')">
+      Casa comigo quando fizer 25?
+    </button>
   </div>
   `;
   startHearts();
