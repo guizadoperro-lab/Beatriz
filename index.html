@@ -2,202 +2,123 @@
 <html lang="pt-br">
 <head>
 <meta charset="UTF-8">
-<title>Para Minha Bibia ❤️</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>17 anos da Mulher da Minha Vida</title>
 
 <style>
 body{
-  margin:0;
-  overflow:hidden;
-  background:linear-gradient(to top,#ff758c,#ff7eb3);
-  font-family:Arial, sans-serif;
-  text-align:center;
-  color:white;
+    margin:0;
+    padding:20px;
+    font-family: Arial, sans-serif;
+    background: linear-gradient(135deg, #ff9ecf, #ffd6f6, #cde7ff);
+    text-align:center;
+    overflow-x:hidden;
 }
 
-.balloon{
-  position:absolute;
-  width:60px;
-  height:80px;
-  border-radius:50%;
-  cursor:pointer;
-  animation: subir linear forwards;
-}
-
-.balloon::after{
-  content:"";
-  position:absolute;
-  width:2px;
-  height:40px;
-  background:black;
-  left:50%;
-  top:80px;
-}
-
-@keyframes subir{
-  from{bottom:-100px;}
-  to{bottom:110vh;}
-}
-
-.number{
-  position:absolute;
-  font-size:40px;
-  font-weight:bold;
-  color:white;
-}
-
-#pergunta{
-  position:absolute;
-  top:40%;
-  left:50%;
-  transform:translate(-50%,-50%);
-  display:none;
+h1{
+    margin-top:40px;
 }
 
 button{
-  padding:15px 30px;
-  font-size:20px;
-  margin:10px;
-  border:none;
-  border-radius:10px;
-  cursor:pointer;
+    padding:12px 25px;
+    font-size:18px;
+    border:none;
+    border-radius:25px;
+    cursor:pointer;
+    margin:10px;
+    transition:0.3s;
 }
 
-#sim{background:#ff4d6d;color:white;}
-#nao{background:#333;color:white;position:relative;}
+#sim{
+    background:#ff4da6;
+    color:white;
+}
+
+#nao{
+    background:#444;
+    color:white;
+    position:absolute;
+}
+
+#mensagemCompleta{
+    display:none;
+    margin-top:40px;
+    font-size:18px;
+    line-height:1.6;
+    max-width:850px;
+    margin-left:auto;
+    margin-right:auto;
+}
+
+.foto{
+    width:110px;
+    border-radius:15px;
+    margin:15px;
+    box-shadow:0 4px 10px rgba(0,0,0,0.2);
+}
+
+.foto-container{
+    display:flex;
+    justify-content:center;
+    flex-wrap:wrap;
+}
+
+.heart{
+    position:fixed;
+    font-size:24px;
+    animation: subir 2s linear forwards;
+}
+
+@keyframes subir{
+    from{transform:translateY(0); opacity:1;}
+    to{transform:translateY(-200px); opacity:0;}
+}
 </style>
 </head>
 
 <body>
 
-<div id="pergunta">
-  <h1>Você aceita namorar comigo? 💖</h1>
-  <button id="sim">SIM</button>
-  <button id="nao">NÃO</button>
+<h1>17 anos da mulher da minha vida 💖</h1>
+<p>Quando você fizer 25… vai se casar comigo né? 💍</p>
+
+<button id="sim" onclick="aceitou()">Sim 💍</button>
+<button id="nao" onmouseover="fugir()">Não 😅</button>
+
+<div id="mensagemCompleta">
+
+<p>hoje é um dia especial, pq foi o dia em que nasceu a mulher que o mudou o meu, e desde q vc entrou na minha vida, nada mais foi igual. Voce trouxe luz, trouxe calma, trouxe amor, trouxe sentido.</p>
+
+<div class="foto-container">
+<img src="Bea1.jpg" class="foto">
+<img src="Bea2.jpg" class="foto">
+<img src="Bea3.jpg" class="foto">
 </div>
 
-<audio id="popSound" src="https://www.soundjay.com/buttons/sounds/button-16.mp3"></audio>
+<p>Amor, eu nao comemoro só o seu aniversário, comemoro a sua existência...</p>
 
-<script>
-let total = 17;
-let count = 0;
+<div class="foto-container">
+<img src="Bea4.jpg" class="foto">
+<img src="Bea5.jpg" class="foto">
+<img src="Bea6.jpg" class="foto">
+</div>
 
-function criarBalao(numero){
-  const balao = document.createElement("div");
-  balao.classList.add("balloon");
-  balao.style.left = Math.random()*90+"vw";
-  balao.style.background = `hsl(${Math.random()*360},70%,60%)`;
-  balao.style.animationDuration = (4+Math.random()*3)+"s";
+<p>E eu quero que vc nunca se esqueça bia, independente das brigas...</p>
 
-  balao.onclick = () =>{
-    document.getElementById("popSound").play();
-
-    const num = document.createElement("div");
-    num.classList.add("number");
-    num.innerText = numero;
-    num.style.left = balao.style.left;
-    num.style.top = "40%";
-    document.body.appendChild(num);
-
-    balao.remove();
-    count++;
-
-    if(count === total){
-      setTimeout(()=>{
-        document.getElementById("pergunta").style.display="block";
-      },1000);
-    }
-  };
-
-  document.body.appendChild(balao);
-}
-
-for(let i=1;i<=17;i++){
-  setTimeout(()=>criarBalao(i), i*400);
-}
-
-const nao = document.getElementById("nao");
-nao.addEventListener("mouseover",()=>{
-  nao.style.position="absolute";
-  nao.style.left=Math.random()*80+"vw";
-  nao.style.top=Math.random()*80+"vh";
-});
-
-document.getElementById("sim").onclick = ()=>{
-
-  document.body.innerHTML="";
-
-  const canvas = document.createElement("canvas");
-  canvas.width = window.innerWidth;
-  canvas.height = window.innerHeight;
-  document.body.appendChild(canvas);
-
-  const ctx = canvas.getContext("2d");
-  const particles = [];
-
-  function criarCoracao(x,y){
-    for(let i=0;i<900;i++){
-      const t = Math.random()*Math.PI*2;
-      const r = 250*(1-Math.sin(t));
-      const px = x + r*Math.cos(t);
-      const py = y - r*Math.sin(t);
-
-      particles.push({
-        x:x,
-        y:y,
-        tx:px,
-        ty:py,
-        size:3,
-        speed:0.02
-      });
-    }
-  }
-
-  criarCoracao(canvas.width/2, canvas.height/2);
-
-  function animar(){
-    ctx.clearRect(0,0,canvas.width,canvas.height);
-    particles.forEach(p=>{
-      p.x += (p.tx - p.x)*p.speed;
-      p.y += (p.ty - p.y)*p.speed;
-      ctx.fillStyle="red";
-      ctx.beginPath();
-      ctx.arc(p.x,p.y,p.size,0,Math.PI*2);
-      ctx.fill();
-    });
-    requestAnimationFrame(animar);
-  }
-
-  animar();
-
-  setTimeout(()=>{
-
-    canvas.remove();
-
-    const container = document.createElement("div");
-    container.style.position="absolute";
-    container.style.top="50%";
-    container.style.left="50%";
-    container.style.transform="translate(-50%,-50%)";
-    container.style.width="95%";
-    container.style.maxHeight="90vh";
-    container.style.overflowY="auto";
-    container.style.background="rgba(0,0,0,0.85)";
-    container.style.padding="30px";
-    container.style.borderRadius="25px";
-    container.style.boxShadow="0 0 40px rgba(255,0,100,0.9)";
-    container.style.color="white";
-    container.style.fontSize="18px";
-
-    container.innerHTML = `
-<h2>Feliz aniversário, Eu te amo Muito. Meu amor. 🩷🤍🩵💜</h2>
+<div class="foto-container">
+<img src="Bea7.jpg" class="foto">
+<img src="Bea8.jpg" class="foto">
+<img src="Bea9.jpg" class="foto">
+</div>
 
 <p>
-hoje é um dia especial, pq foi o dia em que nasceu a mulher que o mudou o meu...
+Eu te amo hoje, no seu aniversário.<br>
+Eu te amo nos dias bons.<br>
+Eu te amo nos dias difíceis.<br>
+Eu te amo nos dias comuns.<br>
+E eu vou te amar todos os outros dias que ainda estão por vir.
 </p>
 
-<p>
-Amor, eu nao comemoro só o seu aniversário, comemoro a sua existência...
-</p>
+<p>Feliz aniversário, Eu te amo Muito. Meu amor.🩷🤍🩵💜</p>
 
 <p>
 1. Português — Eu te amo<br>
@@ -207,9 +128,9 @@ Amor, eu nao comemoro só o seu aniversário, comemoro a sua existência...
 5. Alemão — Ich liebe dich<br>
 6. Italiano — Ti amo<br>
 7. Japonês — 愛してる (Aishiteru)<br>
-8. Chinês (Mandarim) — 我爱你 (Wǒ ài nǐ)<br>
-9. Russo — Я тебя люблю (Ya tebya lyublyu)<br>
-10. Árabe — أنا أحبك (Ana uhibbuka/uhibbuki)<br>
+8. Chinês — 我爱你 (Wǒ ài nǐ)<br>
+9. Russo — Я тебя люблю<br>
+10. Árabe — أنا أحبك<br>
 11. Hindi — मैं तुमसे प्यार करता हूँ<br>
 12. Turco — Seni seviyorum<br>
 13. Coreano — 사랑해<br>
@@ -219,28 +140,43 @@ Amor, eu nao comemoro só o seu aniversário, comemoro a sua existência...
 17. Finlandês — Rakastan sinua
 </p>
 
-<h3>Nossos Momentos 📸</h3>
-<div id="galeria" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:15px;margin-top:20px;"></div>
-`;
+<p>Eu te amo em 100 línguas diferentes... mas nenhuma consegue traduzir exatamente oq eu sinto por você.</p>
 
-    document.body.appendChild(container);
+<p>Pq oq eu sinto é maior que qualquer coisa... Eu te amo, minha bibia. Hoje, amanhã e em todos os dias que ainda vão existir. 🤍❤️</p>
 
-    const galeria = document.getElementById("galeria");
+</div>
 
-    for(let i=1;i<=9;i++){
-        const img = document.createElement("img");
-        img.src = "Bea"+i+".jpg";
-        img.style.width="100%";
-        img.style.borderRadius="15px";
-        img.style.boxShadow="0 0 20px rgba(255,0,120,0.7)";
-        img.style.transition="0.4s";
-        img.onmouseover = ()=> img.style.transform="scale(1.08)";
-        img.onmouseout = ()=> img.style.transform="scale(1)";
-        galeria.appendChild(img);
+<script>
+
+function fugir(){
+    let botao = document.getElementById("nao");
+    let largura = window.innerWidth - 100;
+    let altura = window.innerHeight - 50;
+
+    let x = Math.random() * largura;
+    let y = Math.random() * altura;
+
+    botao.style.left = x + "px";
+    botao.style.top = y + "px";
+}
+
+function aceitou(){
+    document.getElementById("mensagemCompleta").style.display = "block";
+
+    for(let i=0; i<30; i++){
+        let heart = document.createElement("div");
+        heart.classList.add("heart");
+        heart.innerHTML = "💖";
+        heart.style.left = Math.random()*100 + "vw";
+        heart.style.top = "80vh";
+        document.body.appendChild(heart);
+
+        setTimeout(()=>{
+            heart.remove();
+        },2000);
     }
+}
 
-  },4000);
-};
 </script>
 
 </body>
