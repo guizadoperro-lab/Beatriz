@@ -108,12 +108,12 @@ button{
     }
 }
 
-/* BALÕES NUMERADOS */
+/* BALÕES INTERATIVOS */
 .balao{
     position:fixed;
-    top:-50px;
-    width:40px;
-    height:50px;
+    bottom:-60px;
+    width:50px;
+    height:60px;
     background:#ff4da6;
     border-radius:50% 50% 50% 50%;
     color:white;
@@ -121,14 +121,10 @@ button{
     display:flex;
     align-items:center;
     justify-content:center;
-    animation: cairBalao linear forwards;
-}
-
-@keyframes cairBalao{
-    to{
-        transform: translateY(110vh);
-        opacity:0;
-    }
+    cursor:pointer;
+    transition:0.2s;
+    font-size:18px;
+    user-select:none;
 }
 </style>
 </head>
@@ -177,36 +173,12 @@ E eu vou te amar todos os outros dias que ainda estão por vir.
 
 <p>Feliz aniversário, Eu te amo Muito. Meu amor.🩷🤍🩵💜</p>
 
-<p>
-1. Português — Eu te amo<br>
-2. Inglês — I love you<br>
-3. Espanhol — Te amo<br>
-4. Francês — Je t’aime<br>
-5. Alemão — Ich liebe dich<br>
-6. Italiano — Ti amo<br>
-7. Japonês — 愛してる (Aishiteru)<br>
-8. Chinês — 我爱你 (Wǒ ài nǐ)<br>
-9. Russo — Я тебя люблю<br>
-10. Árabe — أنا أحبك<br>
-11. Hindi — Main tumse pyaar karta hoon<br>
-12. Turco — Seni seviyorum<br>
-13. Coreano — 사랑해<br>
-14. Sueco — Jag älskar dig<br>
-15. Dinamarquês — Jeg elsker dig<br>
-16. Norueguês — Jeg elsker deg<br>
-17. Finlandês — Rakastan sinua
-</p>
-
-<p>Eu te amo em 100 línguas diferentes. Eu escrevi em português, inglês, japonês, árabe, em todas elas, mas nenhuma consegue traduzir exatamente oq eu sinto por você, minha princesa.</p>
-
-<p>Pq oq eu sinto é maior que qualquer coisa, é escolha diária, é querer vc nos meus planos de hj, de amanhã e de um futuro inteiro. Eu te amo, minha bibia. Hoje, amanhã e em todos os dias que ainda vão existir. 🤍❤️</p>
-
 </div>
 
 <script>
 let contadorNao = 0;
 
-// BOTÃO NÃO SUPER FUGINDO (NUNCA PARA)
+// BOTÃO NÃO FUGINDO SEM PARAR
 function fugir(){
     const botao = document.getElementById("nao");
     const largura = window.innerWidth - botao.offsetWidth - 20;
@@ -215,11 +187,33 @@ function fugir(){
     botao.style.left = Math.random() * largura + "px";
     botao.style.top = Math.random() * altura + "px";
     contadorNao++;
-    if(contadorNao > 5){ botao.style.transition = "0.05s"; } 
-    else { botao.style.transition = "0.2s"; }
+    botao.style.transition = contadorNao > 5 ? "0.05s" : "0.2s";
 }
 document.getElementById("nao").addEventListener("mouseover", fugir);
 document.getElementById("nao").addEventListener("click", function(e){ e.preventDefault(); fugir(); });
+
+// CORAÇÕES E CONFETES
+function criarCoracaoCaindo(){
+    let heart = document.createElement("div");
+    heart.classList.add("heartFall");
+    heart.innerHTML = "💗";
+    heart.style.left = Math.random()*100 + "vw";
+    heart.style.animationDuration = (3 + Math.random()*3) + "s";
+    document.body.appendChild(heart);
+    setTimeout(()=>{ heart.remove(); },6000);
+}
+setInterval(criarCoracaoCaindo, 300);
+
+function criarConfete(){
+    let confete = document.createElement("div");
+    confete.classList.add("confete");
+    let cores = ["#ff4da6", "#ffd700", "#00c3ff", "#00ff9d", "#ff6600", "#ffffff"];
+    confete.style.backgroundColor = cores[Math.floor(Math.random()*cores.length)];
+    confete.style.left = Math.random()*100 + "vw";
+    confete.style.animationDuration = (3 + Math.random()*3) + "s";
+    document.body.appendChild(confete);
+    setTimeout(()=>{ confete.remove(); },6000);
+}
 
 // QUANDO CLICA NO SIM
 function aceitou(){
@@ -243,49 +237,41 @@ function aceitou(){
     }
 }
 
-// CORAÇÃO CAINDO CONSTANTE
-function criarCoracaoCaindo(){
-    let heart = document.createElement("div");
-    heart.classList.add("heartFall");
-    heart.innerHTML = "💗";
-    heart.style.left = Math.random()*100 + "vw";
-    heart.style.animationDuration = (3 + Math.random()*3) + "s";
-    document.body.appendChild(heart);
-    setTimeout(()=>{ heart.remove(); },6000);
-}
-setInterval(criarCoracaoCaindo, 300);
+// BALÕES INTERATIVOS DE BAIXO PRA CIMA
+let baloes = 17;
+let balaoAtual = 1;
 
-// CONFETE
-function criarConfete(){
-    let confete = document.createElement("div");
-    confete.classList.add("confete");
-    let cores = ["#ff4da6", "#ffd700", "#00c3ff", "#00ff9d", "#ff6600", "#ffffff"];
-    confete.style.backgroundColor = cores[Math.floor(Math.random()*cores.length)];
-    confete.style.left = Math.random()*100 + "vw";
-    confete.style.animationDuration = (3 + Math.random()*3) + "s";
-    document.body.appendChild(confete);
-    setTimeout(()=>{ confete.remove(); },6000);
-}
-
-// BALÕES NUMERADOS INICIAIS
 function criarBalao(numero){
     let balao = document.createElement("div");
     balao.classList.add("balao");
     balao.innerHTML = numero;
     balao.style.left = Math.random()*90 + "vw";
-    balao.style.animationDuration = (3 + Math.random()*3) + "s";
     document.body.appendChild(balao);
-    setTimeout(()=>{ balao.remove(); },4000);
+
+    // animação de subir
+    balao.animate([
+        { bottom: '-60px' },
+        { bottom: '80vh' }
+    ],{
+        duration: 4000,
+        easing: 'linear'
+    });
+
+    balao.addEventListener("click", function(){
+        balao.remove();
+        balaoAtual++;
+        if(balaoAtual <= baloes){
+            criarBalao(balaoAtual);
+        } else {
+            // depois do último, mostra os botões
+            document.getElementById("sim").style.display = "inline-block";
+            document.getElementById("nao").style.display = "inline-block";
+        }
+    });
 }
 
-// Cria os 17 balões e depois mostra os botões
-for(let i=1;i<=17;i++){
-    setTimeout(()=>{ criarBalao(i); }, i*250);
-}
-setTimeout(()=>{
-    document.getElementById("sim").style.display = "inline-block";
-    document.getElementById("nao").style.display = "inline-block";
-}, 4500);
+// inicia o primeiro balão
+criarBalao(balaoAtual);
 
 </script>
 
