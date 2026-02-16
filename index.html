@@ -63,6 +63,7 @@ button{
     flex-wrap:wrap;
 }
 
+/* CORAÇÃO SUBINDO */
 .heart{
     position:fixed;
     font-size:24px;
@@ -72,6 +73,37 @@ button{
 @keyframes subir{
     from{transform:translateY(0); opacity:1;}
     to{transform:translateY(-200px); opacity:0;}
+}
+
+/* CORAÇÃO CAINDO */
+.heartFall{
+    position:fixed;
+    top:-10px;
+    font-size:20px;
+    animation: cair linear forwards;
+}
+
+@keyframes cair{
+    to{
+        transform: translateY(110vh);
+        opacity:0;
+    }
+}
+
+/* CONFETE */
+.confete{
+    position:fixed;
+    width:8px;
+    height:8px;
+    top:-10px;
+    animation: cairConfete linear forwards;
+}
+
+@keyframes cairConfete{
+    to{
+        transform: translateY(110vh) rotate(720deg);
+        opacity:0;
+    }
 }
 </style>
 </head>
@@ -94,7 +126,7 @@ button{
 <img src="Bea3.jpg" class="foto">
 </div>
 
-<p>Amor, eu nao comemoro só o seu aniversário, comemoro a sua existência...</p>
+<p>Amor, eu nao comemoro só o seu aniversário, comemoro a sua existência, comemoro o seu sorriso que todo dia que eu vejo quando a gente vai conversar, ilumina meus dias mesmo quando tudo parecer pesado. Comemoro o jeito que vc me acalma só com sua presença, comemoro a sua força que vc me inspira a ser melhor e o jeito que vc faz eu me sentir o homem mais forte do mundo, comemoro a sua força que me inspira a ser melhor, comemoro o carinho que me faz sentir exatamente onde eu deveria estar( ao seu lado. ) que esse novo ano da sua vida venha carregado de sonhos realizados, paz no coração, metas conquistadas e momentos inesquecíveis, eu espero de verdade estar presente em todos eles, quero ser abrigo quando o mundo pesar e ser aplauso quando vc vencer, quero estar nas suas conquistas, pq suas conquistas são as minhas. obrigado por ser minha parceira. minha melhor amiga, minha companhia, minha namorada. OBRIGADO POR SER MINHA BIBIA. Voce merece o mundo inteiro meu amor, merece tudo de mais bonito que existe, mas enquanto o mundo nao cabe em uma caixa de presente, eu prometo de dar o melhor de mim todos os dias.</p>
 
 <div class="foto-container">
 <img src="Bea4.jpg" class="foto">
@@ -102,7 +134,7 @@ button{
 <img src="Bea6.jpg" class="foto">
 </div>
 
-<p>E eu quero que vc nunca se esqueça bia, independente das brigas...</p>
+<p>E eu quero que vc nunca se esqueça bia, independente das brigas, dos dias difíceis ou das fases complicadas, eu vou estar com vc, pq amar vc nao é só nos dias leves e felizes. Amar vc é escolher ficar, é escolher conversas, é escolher crescer junto, é escolher construir algo forte. Todos os dias. Eu amo o seu jeitinho, amo a forma que vc demonstra oq sente, amo o jeito que vc cuida de mim, como vc presta atenção nos detalhes, como vc se importa. Amo como vc consegue ser tão carinhosa e tao forte ao mesmo tempo. Amo quando vc me chama de "coração". Amo cada detalhe seu, até aqueles q vc acha pequenos ou imperfeitos, pq pra mim, tudo em vc é gigante, e que a gente continue crescendo, aprendendo, amadurecendo e se escolhendo todos os dias. Q a gnt continue sendo abrigo de um do outro, pq VOCÊ é minha BIBIA, e eu sou o seu AMOR, e eu tenho muito orgulho disso, orgulho de nós, orgulho da nossa história, Orgulho da Mulher incrível que você é, Beatriz.</p>
 
 <div class="foto-container">
 <img src="Bea7.jpg" class="foto">
@@ -131,7 +163,7 @@ E eu vou te amar todos os outros dias que ainda estão por vir.
 8. Chinês — 我爱你 (Wǒ ài nǐ)<br>
 9. Russo — Я тебя люблю<br>
 10. Árabe — أنا أحبك<br>
-11. Hindi — मैं तुमसे प्यार करता हूँ<br>
+11. Hindi — Main tumse pyaar karta hoon<br>
 12. Turco — Seni seviyorum<br>
 13. Coreano — 사랑해<br>
 14. Sueco — Jag älskar dig<br>
@@ -140,9 +172,9 @@ E eu vou te amar todos os outros dias que ainda estão por vir.
 17. Finlandês — Rakastan sinua
 </p>
 
-<p>Eu te amo em 100 línguas diferentes... mas nenhuma consegue traduzir exatamente oq eu sinto por você.</p>
+<p>Eu te amo em 100 línguas diferentes. Eu escrevi em português, inglês, japonês, árabe, em todas elas, mas nenhuma consegue traduzir exatamente oq eu sinto por você, minha princesa.</p>
 
-<p>Pq oq eu sinto é maior que qualquer coisa... Eu te amo, minha bibia. Hoje, amanhã e em todos os dias que ainda vão existir. 🤍❤️</p>
+<p>Pq oq eu sinto é maior que qualquer coisa, é escolha diária, é querer vc nos meus planos de hj, de amanhã e de um futuro inteiro. Eu te amo, minha bibia. Hoje, amanhã e em todos os dias que ainda vão existir. 🤍❤️</p>
 
 </div>
 
@@ -152,12 +184,8 @@ function fugir(){
     let botao = document.getElementById("nao");
     let largura = window.innerWidth - 100;
     let altura = window.innerHeight - 50;
-
-    let x = Math.random() * largura;
-    let y = Math.random() * altura;
-
-    botao.style.left = x + "px";
-    botao.style.top = y + "px";
+    botao.style.left = Math.random() * largura + "px";
+    botao.style.top = Math.random() * altura + "px";
 }
 
 function aceitou(){
@@ -170,11 +198,37 @@ function aceitou(){
         heart.style.left = Math.random()*100 + "vw";
         heart.style.top = "80vh";
         document.body.appendChild(heart);
-
-        setTimeout(()=>{
-            heart.remove();
-        },2000);
+        setTimeout(()=>{ heart.remove(); },2000);
     }
+
+    for(let i=0; i<150; i++){
+        criarConfete();
+    }
+}
+
+function criarCoracaoCaindo(){
+    let heart = document.createElement("div");
+    heart.classList.add("heartFall");
+    heart.innerHTML = "💗";
+    heart.style.left = Math.random()*100 + "vw";
+    heart.style.animationDuration = (3 + Math.random()*3) + "s";
+    document.body.appendChild(heart);
+    setTimeout(()=>{ heart.remove(); },6000);
+}
+
+setInterval(criarCoracaoCaindo, 300);
+
+function criarConfete(){
+    let confete = document.createElement("div");
+    confete.classList.add("confete");
+
+    let cores = ["#ff4da6", "#ffd700", "#00c3ff", "#00ff9d", "#ff6600", "#ffffff"];
+    confete.style.backgroundColor = cores[Math.floor(Math.random()*cores.length)];
+    confete.style.left = Math.random()*100 + "vw";
+    confete.style.animationDuration = (3 + Math.random()*3) + "s";
+
+    document.body.appendChild(confete);
+    setTimeout(()=>{ confete.remove(); },6000);
 }
 
 </script>
