@@ -126,7 +126,7 @@ button{
 <img src="Bea3.jpg" class="foto">
 </div>
 
-<p>Amor, eu nao comemoro só o seu aniversário, comemoro a sua existência, comemoro o seu sorriso que todo dia que eu vejo quando a gente vai conversar, ilumina meus dias mesmo quando tudo parecer pesado. Comemoro o jeito que vc me acalma só com sua presença, comemoro a sua força que vc me inspira a ser melhor e o jeito que vc faz eu me sentir o homem mais forte do mundo, comemoro a sua força que me inspira a ser melhor, comemoro o carinho que me faz sentir exatamente onde eu deveria estar( ao seu lado. ) que esse novo ano da sua vida venha carregado de sonhos realizados, paz no coração, metas conquistadas e momentos inesquecíveis, eu espero de verdade estar presente em todos eles, quero ser abrigo quando o mundo pesar e ser aplauso quando vc vencer, quero estar nas suas conquistas, pq suas conquistas são as minhas. obrigado por ser minha parceira. minha melhor amiga, minha companhia, minha namorada. OBRIGADO POR SER MINHA BIBIA. Voce merece o mundo inteiro meu amor, merece tudo de mais bonito que existe, mas enquanto o mundo nao cabe em uma caixa de presente, eu prometo de dar o melhor de mim todos os dias.</p>
+<p>Amor, eu nao comemoro só o seu aniversário, comemoro a sua existência, comemoro o seu sorriso que todo dia que eu vejo quando a gente vai conversar ilumina meus dias mesmo quando tudo parecer pesado. Comemoro o jeito que vc me acalma só com sua presença, comemoro a sua força que vc me inspira a ser melhor e o jeito que vc faz eu me sentir o homem mais forte do mundo, comemoro a sua força que me inspira a ser melhor, comemoro o carinho que me faz sentir exatamente onde eu deveria estar( ao seu lado. ) que esse novo ano da sua vida venha carregado de sonhos realizados, paz no coração, metas conquistadas e momentos inesquecíveis, eu espero de verdade estar presente em todos eles, quero ser abrigo quando o mundo pesar e ser aplauso quando vc vencer, quero estar nas suas conquistas, pq suas conquistas são as minhas. obrigado por ser minha parceira. minha melhor amiga, minha companhia, minha namorada. OBRIGADO POR SER MINHA BIBIA. Voce merece o mundo inteiro meu amor, merece tudo de mais bonito que existe, mas enquanto o mundo nao cabe em uma caixa de presente, eu prometo de dar o melhor de mim todos os dias.</p>
 
 <div class="foto-container">
 <img src="Bea4.jpg" class="foto">
@@ -179,19 +179,54 @@ E eu vou te amar todos os outros dias que ainda estão por vir.
 </div>
 
 <script>
+let contadorNao = 0;
 
+// BOTÃO NÃO SUPER FUGINDO (NUNCA PARA)
 function fugir(){
-    let botao = document.getElementById("nao");
-    let largura = window.innerWidth - 100;
-    let altura = window.innerHeight - 50;
-    botao.style.left = Math.random() * largura + "px";
-    botao.style.top = Math.random() * altura + "px";
+    const botao = document.getElementById("nao");
+
+    const largura = window.innerWidth - botao.offsetWidth - 20;
+    const altura = window.innerHeight - botao.offsetHeight - 20;
+
+    const novaPosicaoX = Math.random() * largura;
+    const novaPosicaoY = Math.random() * altura;
+
+    botao.style.position = "fixed";
+    botao.style.left = novaPosicaoX + "px";
+    botao.style.top = novaPosicaoY + "px";
+
+    contadorNao++;
+
+    // Quanto mais clicar, mais rápido ele fica
+    if(contadorNao > 5){
+        botao.style.transition = "0.05s";
+    } else {
+        botao.style.transition = "0.2s";
+    }
 }
 
+// Faz fugir ao passar o mouse
+document.getElementById("nao").addEventListener("mouseover", fugir);
+
+// Faz fugir ao clicar também
+document.getElementById("nao").addEventListener("click", function(e){
+    e.preventDefault();
+    fugir();
+});
+
+// QUANDO CLICA NO SIM
 function aceitou(){
+    // some com pergunta e botões
+    document.querySelector("h1").style.display = "none";
+    document.querySelector("p").style.display = "none";
+    document.getElementById("sim").style.display = "none";
+    document.getElementById("nao").style.display = "none";
+
+    // mostra mensagem
     document.getElementById("mensagemCompleta").style.display = "block";
 
-    for(let i=0; i<30; i++){
+    // corações subindo
+    for(let i=0; i<40; i++){
         let heart = document.createElement("div");
         heart.classList.add("heart");
         heart.innerHTML = "💖";
@@ -201,11 +236,13 @@ function aceitou(){
         setTimeout(()=>{ heart.remove(); },2000);
     }
 
-    for(let i=0; i<150; i++){
+    // confetes
+    for(let i=0; i<200; i++){
         criarConfete();
     }
 }
 
+// CORAÇÃO CAINDO CONSTANTE
 function criarCoracaoCaindo(){
     let heart = document.createElement("div");
     heart.classList.add("heartFall");
@@ -215,22 +252,19 @@ function criarCoracaoCaindo(){
     document.body.appendChild(heart);
     setTimeout(()=>{ heart.remove(); },6000);
 }
-
 setInterval(criarCoracaoCaindo, 300);
 
+// CONFETE
 function criarConfete(){
     let confete = document.createElement("div");
     confete.classList.add("confete");
-
     let cores = ["#ff4da6", "#ffd700", "#00c3ff", "#00ff9d", "#ff6600", "#ffffff"];
     confete.style.backgroundColor = cores[Math.floor(Math.random()*cores.length)];
     confete.style.left = Math.random()*100 + "vw";
     confete.style.animationDuration = (3 + Math.random()*3) + "s";
-
     document.body.appendChild(confete);
     setTimeout(()=>{ confete.remove(); },6000);
 }
-
 </script>
 
 </body>
