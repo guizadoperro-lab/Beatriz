@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+<meta charset="UTF-8">
+<title>Para Beatriz ❤️</title>
+
+<style>
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  overflow-x: hidden;
+  text-align: center;
+  background: linear-gradient(135deg, #7b2ff7, #ff69b4, #ffffff);
+  color: white;
+}
+
+/* Tela inicial */
+.screen {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.hidden { display: none; }
+
+.letter {
+  font-size: 60px;
+  cursor: pointer;
+  margin-top: 20px;
+  transition: 0.3s;
+}
+.letter:hover { transform: scale(1.2); }
+
+/* Balões */
+.balloon {
+  position: fixed;
+  bottom: -150px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: hotpink;
+  width: 120px;
+  height: 150px;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 40px;
+  cursor: pointer;
+  animation: subir 3s forwards;
+}
+
+@keyframes subir {
+  to { bottom: 40%; }
+}
+
+.explode {
+  animation: explode 0.4s forwards;
+}
+
+@keyframes explode {
+  to { transform: scale(2); opacity: 0; }
+}
+
+/* Nome em néon */
+.neon {
+  font-size: 60px;
+  font-weight: bold;
+  color: #ff4dd2;
+  text-shadow:
+    0 0 5px #ff4dd2,
+    0 0 10px #ff4dd2,
+    0 0 20px #ff1ac6,
+    0 0 40px #ff1ac6;
+  margin-bottom: 20px;
+  animation: pulse 1.5s infinite alternate;
+}
+
+@keyframes pulse {
+  from { opacity: 0.8; }
+  to { opacity: 1; }
+}
+
+/* Mensagem */
+.final-message {
+  padding: 40px;
+  max-width: 900px;
+  margin: auto;
+  line-height: 1.6;
+}
+
+/* Botão final */
+.final-btn {
+  margin-top: 40px;
+  padding: 15px 30px;
+  font-size: 20px;
+  border: none;
+  border-radius: 30px;
+  background: #ff4dd2;
+  color: white;
+  cursor: pointer;
+  box-shadow: 0 0 20px #ff4dd2;
+  transition: 0.3s;
+}
+
+.final-btn:hover {
+  transform: scale(1.1);
+  box-shadow: 0 0 40px #ff1ac6;
+}
+
+/* Corações */
+.heart {
+  position: fixed;
+  top: -10px;
+  font-size: 20px;
+  animation: fall linear forwards;
+}
+
+@keyframes fall {
+  to {
+    transform: translateY(110vh);
+    opacity: 0;
+  }
+}
+
+/* Fotos */
+.photo {
+  position: absolute;
+  width: 120px;
+  animation: float 6s infinite alternate ease-in-out;
+}
+
+@keyframes float {
+  from { transform: translateY(0px); }
+  to { transform: translateY(20px); }
+}
+
+canvas {
+  position: fixed;
+  top: 0;
+  left: 0;
+  pointer-events: none;
+}
+</style>
+</head>
+<body>
+
+<div id="intro" class="screen">
+  <h1>De: Guilherme<br>Para: Beatriz</h1>
+  <div class="letter" onclick="startBalloons()">💌</div>
+</div>
+
+<canvas id="fireworks"></canvas>
+
+<script>
+let count = 1;
+
+function startBalloons() {
+  document.getElementById("intro").classList.add("hidden");
+  createBalloon();
+}
+
+function createBalloon() {
+  let balloon = document.createElement("div");
+  balloon.className = "balloon";
+  balloon.innerText = count;
+  balloon.onclick = function() {
+    balloon.classList.add("explode");
+    setTimeout(() => {
+      balloon.remove();
+      count++;
+      if(count <= 17) {
+        createBalloon();
+      } else {
+        showFinalButton();
+      }
+    }, 400);
+  };
+  document.body.appendChild(balloon);
+}
+
+function showFinalButton() {
+  let msg = document.createElement("div");
+  msg.style.fontSize = "40px";
+  msg.style.marginTop = "30px";
+  msg.style.cursor = "pointer";
+  msg.innerText = "FELIZ 17 ANOS MEU AMORRR ❤️";
+  msg.onclick = showFinal;
+  document.body.appendChild(msg);
+}
+
+function showFinal() {
+  document.body.innerHTML += `
+  <div class="final-message">
+  <div class="neon">Beatriz 💖</div>
+  <h1>Feliz 17 anos minha Bibia ❤️</h1>
+  <p>COLE AQUI SEU TEXTO COMPLETO</p>
+  <button class="final-btn" onclick="alert('Então já fica prometido 😌💍')">
+  Casa comigo quando fizer 25?
+  </button>
+  </div>
+  `;
+  startHearts();
+  startFireworks();
+}
+
+/* Corações */
+function startHearts() {
+  setInterval(() => {
+    let heart = document.createElement("div");
+    heart.className = "heart";
+    heart.innerText = "❤️";
+    heart.style.left = Math.random() * 100 + "vw";
+    heart.style.animationDuration = (3 + Math.random()*2) + "s";
+    document.body.appendChild(heart);
+    setTimeout(()=> heart.remove(),5000);
+  }, 300);
+}
+
+/* Fogos */
+function startFireworks() {
+  const canvas = document.getElementById("fireworks");
+  const ctx = canvas.getContext("2d");
+  canvas.width = window.innerWidth;
+  canvas.height = window.innerHeight;
+
+  function firework() {
+    let x = Math.random()*canvas.width;
+    let y = Math.random()*canvas.height/2;
+    for(let i=0;i<50;i++){
+      ctx.beginPath();
+      ctx.arc(x + Math.random()*100-50, y + Math.random()*100-50, 3, 0, Math.PI*2);
+      ctx.fillStyle = `hsl(${Math.random()*360},100%,70%)`;
+      ctx.fill();
+    }
+  }
+
+  setInterval(firework, 800);
+}
+</script>
+
+</body>
+</html>
