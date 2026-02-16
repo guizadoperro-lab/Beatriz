@@ -27,6 +27,7 @@ button{
     cursor:pointer;
     margin:10px;
     transition:0.3s;
+    display:none; /* começa escondido */
 }
 
 #sim{
@@ -38,6 +39,7 @@ button{
     background:#444;
     color:white;
     position:absolute;
+    display:none; /* começa escondido */
 }
 
 #mensagemCompleta{
@@ -102,6 +104,29 @@ button{
 @keyframes cairConfete{
     to{
         transform: translateY(110vh) rotate(720deg);
+        opacity:0;
+    }
+}
+
+/* BALÕES NUMERADOS */
+.balao{
+    position:fixed;
+    top:-50px;
+    width:40px;
+    height:50px;
+    background:#ff4da6;
+    border-radius:50% 50% 50% 50%;
+    color:white;
+    font-weight:bold;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    animation: cairBalao linear forwards;
+}
+
+@keyframes cairBalao{
+    to{
+        transform: translateY(110vh);
         opacity:0;
     }
 }
@@ -184,48 +209,26 @@ let contadorNao = 0;
 // BOTÃO NÃO SUPER FUGINDO (NUNCA PARA)
 function fugir(){
     const botao = document.getElementById("nao");
-
     const largura = window.innerWidth - botao.offsetWidth - 20;
     const altura = window.innerHeight - botao.offsetHeight - 20;
-
-    const novaPosicaoX = Math.random() * largura;
-    const novaPosicaoY = Math.random() * altura;
-
     botao.style.position = "fixed";
-    botao.style.left = novaPosicaoX + "px";
-    botao.style.top = novaPosicaoY + "px";
-
+    botao.style.left = Math.random() * largura + "px";
+    botao.style.top = Math.random() * altura + "px";
     contadorNao++;
-
-    // Quanto mais clicar, mais rápido ele fica
-    if(contadorNao > 5){
-        botao.style.transition = "0.05s";
-    } else {
-        botao.style.transition = "0.2s";
-    }
+    if(contadorNao > 5){ botao.style.transition = "0.05s"; } 
+    else { botao.style.transition = "0.2s"; }
 }
-
-// Faz fugir ao passar o mouse
 document.getElementById("nao").addEventListener("mouseover", fugir);
-
-// Faz fugir ao clicar também
-document.getElementById("nao").addEventListener("click", function(e){
-    e.preventDefault();
-    fugir();
-});
+document.getElementById("nao").addEventListener("click", function(e){ e.preventDefault(); fugir(); });
 
 // QUANDO CLICA NO SIM
 function aceitou(){
-    // some com pergunta e botões
     document.querySelector("h1").style.display = "none";
     document.querySelector("p").style.display = "none";
     document.getElementById("sim").style.display = "none";
     document.getElementById("nao").style.display = "none";
-
-    // mostra mensagem
     document.getElementById("mensagemCompleta").style.display = "block";
 
-    // corações subindo
     for(let i=0; i<40; i++){
         let heart = document.createElement("div");
         heart.classList.add("heart");
@@ -235,8 +238,6 @@ function aceitou(){
         document.body.appendChild(heart);
         setTimeout(()=>{ heart.remove(); },2000);
     }
-
-    // confetes
     for(let i=0; i<200; i++){
         criarConfete();
     }
@@ -265,6 +266,27 @@ function criarConfete(){
     document.body.appendChild(confete);
     setTimeout(()=>{ confete.remove(); },6000);
 }
+
+// BALÕES NUMERADOS INICIAIS
+function criarBalao(numero){
+    let balao = document.createElement("div");
+    balao.classList.add("balao");
+    balao.innerHTML = numero;
+    balao.style.left = Math.random()*90 + "vw";
+    balao.style.animationDuration = (3 + Math.random()*3) + "s";
+    document.body.appendChild(balao);
+    setTimeout(()=>{ balao.remove(); },4000);
+}
+
+// Cria os 17 balões e depois mostra os botões
+for(let i=1;i<=17;i++){
+    setTimeout(()=>{ criarBalao(i); }, i*250);
+}
+setTimeout(()=>{
+    document.getElementById("sim").style.display = "inline-block";
+    document.getElementById("nao").style.display = "inline-block";
+}, 4500);
+
 </script>
 
 </body>
