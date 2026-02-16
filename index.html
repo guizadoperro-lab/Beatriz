@@ -47,12 +47,22 @@ button{
     position:absolute;
 }
 
-/* balões */
+/* balões visuais */
 .balao{
     position:fixed;
     bottom:-120px;
-    font-size:40px;
+    width:60px;
+    height:80px;
+    background: radial-gradient(circle at 50% 30%, #ff4da6, #ff1a75);
+    border-radius:50% 50% 50% 50% / 60% 60% 40% 40%;
+    color:white;
+    font-weight:bold;
+    font-size:24px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
     cursor:pointer;
+    box-shadow:0 4px 10px rgba(0,0,0,0.3);
     transition: transform 0.2s;
 }
 
@@ -131,7 +141,6 @@ button{
 <button id="nao">Não 😅</button>
 
 <div id="mensagemCompleta">
-
 <p>hoje é um dia especial, pq foi o dia em que nasceu a mulher que o mudou o meu, e desde q vc entrou na minha vida, nada mais foi igual. Voce trouxe luz, trouxe calma, trouxe amor, trouxe sentido.</p>
 
 <div class="foto-container">
@@ -196,7 +205,7 @@ E eu vou te amar todos os outros dias que ainda estão por vir.
 let contadorNao = 0;
 let balaoAtual = 1;
 
-// cria os 17 balões
+// cria balão visual
 function criarBalao(numero){
     let balao = document.createElement("div");
     balao.classList.add("balao");
@@ -204,16 +213,16 @@ function criarBalao(numero){
     balao.style.left = Math.random()*90 + "vw";
     document.body.appendChild(balao);
 
-    // anima balão subindo
-    let pos = -100;
+    // sobe o balão de baixo para meio da tela
+    let pos = -120;
     let interval = setInterval(()=>{
         if(pos > window.innerHeight/2 - 50) clearInterval(interval);
         pos += 2;
         balao.style.bottom = pos + "px";
     }, 20);
 
+    // clicar para estourar
     balao.addEventListener("click", ()=>{
-        // animação estourar
         balao.style.transform = "scale(0)";
         setTimeout(()=>{ balao.remove(); },200);
 
@@ -223,7 +232,7 @@ function criarBalao(numero){
     });
 }
 
-// mostra pergunta e botões depois de estourar 17 balões
+// mostrar pergunta e botões
 function mostrarPergunta(){
     document.querySelector("h1").style.display = "block";
     document.getElementById("pergunta").style.display = "block";
@@ -239,11 +248,7 @@ function fugir(){
     botao.style.left = Math.random() * largura + "px";
     botao.style.top = Math.random() * altura + "px";
     contadorNao++;
-    if(contadorNao > 5){
-        botao.style.transition = "0.05s";
-    } else {
-        botao.style.transition = "0.2s";
-    }
+    botao.style.transition = contadorNao > 5 ? "0.05s" : "0.2s";
 }
 
 document.getElementById("nao").addEventListener("mouseover", fugir);
@@ -251,13 +256,11 @@ document.getElementById("nao").addEventListener("click", fugir);
 
 // QUANDO CLICA NO SIM
 function aceitou(){
-    // some com pergunta e botões
     document.querySelector("h1").style.display = "none";
     document.getElementById("pergunta").style.display = "none";
     document.getElementById("sim").style.display = "none";
     document.getElementById("nao").style.display = "none";
 
-    // mostra mensagem completa
     document.getElementById("mensagemCompleta").style.display = "block";
 
     // corações subindo
@@ -271,11 +274,11 @@ function aceitou(){
         setTimeout(()=>{ heart.remove(); },2000);
     }
 
-    // MUITO confete
+    // confete
     for(let i=0; i<200; i++) criarConfete();
 }
 
-// CORAÇÃO CAINDO CONSTANTE
+// CORAÇÃO CAINDO
 function criarCoracaoCaindo(){
     let heart = document.createElement("div");
     heart.classList.add("heartFall");
