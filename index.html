@@ -2,256 +2,74 @@
 <html lang="pt-br">
 <head>
 <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Para Beatriz ❤️</title>
 
 <style>
 body {
-  margin: 0;
-  font-family: Arial, sans-serif;
-  overflow-x: hidden;
-  text-align: center;
-  background: linear-gradient(135deg, #7b2ff7, #ff69b4, #ffffff);
-  color: white;
+    margin: 0;
+    padding: 0;
+    background-color: black;
+    color: #ff69b4;
+    font-family: Arial, sans-serif;
+    text-align: center;
 }
 
 /* Tela inicial */
-.screen {
-  height: 100vh;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
+.tela-inicial {
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }
 
-.hidden { display: none; }
-
-.letter {
-  font-size: 60px;
-  cursor: pointer;
-  margin-top: 20px;
-  transition: 0.3s;
+/* Texto principal */
+.tela-inicial h1 {
+    font-size: 40px;
+    margin: 10px;
 }
-.letter:hover { transform: scale(1.2); }
 
 /* Balões */
-.balloon {
-  position: fixed;
-  bottom: -150px;
-  left: 50%;
-  transform: translateX(-50%);
-  background: hotpink;
-  width: 120px;
-  height: 150px;
-  border-radius: 50%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  font-size: 40px;
-  cursor: pointer;
-  animation: subir 3s forwards;
+.baloes {
+    font-size: 40px;
+    margin-top: 20px;
 }
 
-@keyframes subir {
-  to { bottom: 40%; }
+/* Galeria */
+.galeria {
+    background: linear-gradient(45deg, #ff1493, #ff69b4);
+    padding: 30px 0;
 }
 
-.explode {
-  animation: explode 0.4s forwards;
-}
-
-@keyframes explode {
-  to { transform: scale(2); opacity: 0; }
-}
-
-/* Nome neon */
-.neon {
-  font-size: 60px;
-  font-weight: bold;
-  color: #ff4dd2;
-  text-shadow:
-    0 0 5px #ff4dd2,
-    0 0 10px #ff4dd2,
-    0 0 20px #ff1ac6,
-    0 0 40px #ff1ac6;
-  margin-bottom: 20px;
-  animation: pulse 1.5s infinite alternate;
-}
-
-@keyframes pulse {
-  from { opacity: 0.8; }
-  to { opacity: 1; }
-}
-
-/* Galeria organizada */
-.photo-gallery {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 15px;
-  max-width: 800px;
-  margin: 40px auto;
-}
-
-.photo-gallery img {
-  width: 100%;
-  border-radius: 15px;
-  box-shadow: 0 0 20px rgba(255,255,255,0.5);
-  transition: 0.3s;
-}
-
-.photo-gallery img:hover {
-  transform: scale(1.05);
-}
-
-/* Botão final */
-.final-btn {
-  margin-top: 30px;
-  padding: 15px 30px;
-  font-size: 20px;
-  border: none;
-  border-radius: 30px;
-  background: #ff4dd2;
-  color: white;
-  cursor: pointer;
-  box-shadow: 0 0 20px #ff4dd2;
-  transition: 0.3s;
-}
-
-.final-btn:hover {
-  transform: scale(1.1);
-  box-shadow: 0 0 40px #ff1ac6;
-}
-
-/* Corações */
-.heart {
-  position: fixed;
-  top: -10px;
-  font-size: 20px;
-  animation: fall linear forwards;
-}
-
-@keyframes fall {
-  to {
-    transform: translateY(110vh);
-    opacity: 0;
-  }
-}
-
-canvas {
-  position: fixed;
-  top: 0;
-  left: 0;
-  pointer-events: none;
+.galeria img {
+    width: 90%;
+    max-width: 350px;
+    margin: 15px 0;
+    border-radius: 15px;
+    box-shadow: 0 0 20px rgba(0,0,0,0.5);
 }
 </style>
 </head>
+
 <body>
 
-<div id="intro" class="screen">
-  <h1>De: Guilherme<br>Para: Beatriz</h1>
-  <div class="letter" onclick="startBalloons()">💌</div>
+<div class="tela-inicial">
+    <h1>FELIZ ANIVERSARIO MEU AMOR ❤️</h1>
+    <div class="baloes">🎈 🎈 🎈 🎈 🎈</div>
 </div>
 
-<canvas id="fireworks"></canvas>
-
-<script>
-let count = 1;
-
-function startBalloons() {
-  document.getElementById("intro").classList.add("hidden");
-  createBalloon();
-}
-
-function createBalloon() {
-  let balloon = document.createElement("div");
-  balloon.className = "balloon";
-  balloon.innerText = count;
-  balloon.onclick = function() {
-    balloon.classList.add("explode");
-    setTimeout(() => {
-      balloon.remove();
-      count++;
-      if(count <= 17) {
-        createBalloon();
-      } else {
-        showFinalButton();
-      }
-    }, 400);
-  };
-  document.body.appendChild(balloon);
-}
-
-function showFinalButton() {
-  let msg = document.createElement("div");
-  msg.style.fontSize = "40px";
-  msg.style.marginTop = "30px";
-  msg.style.cursor = "pointer";
-  msg.innerText = "FELIZ 17 ANOS MEU AMORRR ❤️";
-  msg.onclick = showFinal;
-  document.body.appendChild(msg);
-}
-
-function showFinal() {
-  document.body.innerHTML += `
-  <div class="final-message">
-    <div class="neon">Beatriz 💖</div>
-    <h1>Feliz 17 anos minha Bibia ❤️</h1>
-    <p>COLE AQUI SEU TEXTO COMPLETO</p>
-
-    <div class="photo-gallery">
-      <img src="Bea1.jpg">
-      <img src="Bea2.jpg">
-      <img src="Bea3.jpg">
-      <img src="Bea4.jpg">
-      <img src="Bea5.jpg">
-      <img src="Bea6.jpg">
-      <img src="Bea7.jpg">
-      <img src="Bea8.jpg">
-      <img src="Bea9.jpg">
-    </div>
-
-    <button class="final-btn" onclick="alert('Então já fica prometido 😌💍')">
-      Casa comigo quando fizer 25?
-    </button>
-  </div>
-  `;
-  startHearts();
-  startFireworks();
-}
-
-/* Corações */
-function startHearts() {
-  setInterval(() => {
-    let heart = document.createElement("div");
-    heart.className = "heart";
-    heart.innerText = "❤️";
-    heart.style.left = Math.random() * 100 + "vw";
-    heart.style.animationDuration = (3 + Math.random()*2) + "s";
-    document.body.appendChild(heart);
-    setTimeout(()=> heart.remove(),5000);
-  }, 300);
-}
-
-/* Fogos */
-function startFireworks() {
-  const canvas = document.getElementById("fireworks");
-  const ctx = canvas.getContext("2d");
-  canvas.width = window.innerWidth;
-  canvas.height = window.innerHeight;
-
-  function firework() {
-    let x = Math.random()*canvas.width;
-    let y = Math.random()*canvas.height/2;
-    for(let i=0;i<50;i++){
-      ctx.beginPath();
-      ctx.arc(x + Math.random()*100-50, y + Math.random()*100-50, 3, 0, Math.PI*2);
-      ctx.fillStyle = `hsl(${Math.random()*360},100%,70%)`;
-      ctx.fill();
-    }
-  }
-
-  setInterval(firework, 800);
-}
-</script>
+<div class="galeria">
+    <img src="Bea1.jpg">
+    <img src="Bea2.jpg">
+    <img src="Bea3.jpg">
+    <img src="Bea4.jpg">
+    <img src="Bea5.jpg">
+    <img src="Bea6.jpg">
+    <img src="Bea7.jpg">
+    <img src="Bea8.jpg">
+    <img src="Bea9.jpg">
+</div>
 
 </body>
 </html>
