@@ -15,61 +15,50 @@ body{
     overflow:hidden;
 }
 
-/* PÁGINAS */
-.pagina{ display:none; }
-.ativa{ display:block; }
-
-/* BALÃO */
+/* BALÕES */
 .balao{
     position:fixed;
     bottom:-150px;
-    left:50%;
-    transform:translateX(-50%);
-    font-size:80px;
+    width:90px;
+    height:110px;
+    background: radial-gradient(circle at 50% 35%, #ff6ec7, #ff1493);
+    border-radius:50% 50% 45% 45%;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:28px;
+    font-weight:bold;
+    color:white;
     cursor:pointer;
-    animation:subir 2.5s linear forwards;
+    animation:subir 5s linear forwards;
 }
 
 @keyframes subir{
-    to{ bottom:120%; }
+    from{ bottom:-150px; }
+    to{ bottom:110%; }
 }
 
-/* DATA COM BRILHO SUAVE */
-.data{
-    font-size:42px;
-    margin-top:40px;
-    animation:respirar 3s ease-in-out infinite;
-}
-
-@keyframes respirar{
-    0%{ text-shadow:0 0 10px rgba(255,255,255,0.3); }
-    50%{ text-shadow:0 0 25px rgba(255,255,255,0.9); }
-    100%{ text-shadow:0 0 10px rgba(255,255,255,0.3); }
-}
-
-button{
-    padding:12px 25px;
-    font-size:18px;
-    border:none;
-    border-radius:25px;
-    cursor:pointer;
-    margin:10px;
-}
-
-#sim{ background:#ff4da6; color:white; }
-#nao{
-    background:#444;
+/* MENSAGEM TRANSIÇÃO */
+#mensagemFinal{
+    position:fixed;
+    top:50%;
+    left:50%;
+    transform:translate(-50%, -50%);
+    font-size:45px;
+    font-weight:bold;
     color:white;
-    position:absolute;
+    text-shadow:0 0 20px rgba(0,0,0,0.3);
+    opacity:0;
+    transition:opacity 2s ease;
+    z-index:999;
 }
 
-#mensagemCompleta{
-    margin-top:30px;
-    font-size:18px;
-    line-height:1.6;
+/* CONTEÚDO */
+#conteudo{
+    opacity:0;
+    transition:opacity 2s ease;
     max-width:850px;
-    margin-left:auto;
-    margin-right:auto;
+    margin:auto;
 }
 
 .foto{
@@ -84,30 +73,39 @@ button{
     justify-content:center;
     flex-wrap:wrap;
 }
-.link{
-    display:inline-block;
-    margin-top:20px;
-    padding:12px 25px;
-    background:#ff4da6;
-    color:white;
-    border-radius:25px;
-    text-decoration:none;
+
+/* CORAÇÕES CAINDO */
+.heartFall{
+    position:fixed;
+    top:-10px;
+    font-size:22px;
+    animation:cair linear forwards;
+    pointer-events:none;
+}
+
+@keyframes cair{
+    to{
+        transform:translateY(110vh);
+        opacity:0;
+    }
 }
 </style>
 </head>
-
 <body>
 
-<!-- PAGINA 1 - BALÕES -->
-<div id="pagina1" class="pagina ativa"></div>
+<div id="paginaBaloes"></div>
 
-<!-- PAGINA 2 - TEXTO COMPLETO -->
-<div id="pagina2" class="pagina">
+<div id="mensagemFinal">
+Feliz aniversário, meu amor.<br>
+Espero que goste.
+</div>
+
+<div id="conteudo">
 
 <h1>17 anos da mulher da minha vida 🤍</h1>
-<div class="data">19/02/2009</div>
+<h2>19/02/2009</h2>
 
-<div id="mensagemCompleta">
+<div>
 
 <p>hoje é um dia especial, pq foi o dia em que nasceu a mulher que o mudou o meu, e desde q vc entrou na minha vida, nada mais foi igual. Voce trouxe luz, trouxe calma, trouxe amor, trouxe sentido.</p>
 
@@ -168,70 +166,65 @@ E eu vou te amar todos os outros dias que ainda estão por vir.
 <p>Pq oq eu sinto é maior que qualquer coisa, é escolha diária, é querer vc nos meus planos de hj, de amanhã e de um futuro inteiro. Eu te amo, minha bibia. Hoje, amanhã e em todos os dias que ainda vão existir. 🤍❤️</p>
 
 </div>
-
-<button onclick="irPedido()">Continuar</button>
-</div>
-
-<!-- PAGINA 3 PEDIDO -->
-<div id="pagina3" class="pagina">
-<h1>17 ANOS DO AMOR DA MINHA VIDA 🤍</h1>
-<p>quando vc fizer 25... vai se casar comigo né? 💍</p>
-<button id="sim" onclick="irFinal()">Sim 💍</button>
-<button id="nao">Não 😅</button>
-</div>
-
-<!-- PAGINA 4 FINAL -->
-<div id="pagina4" class="pagina">
-<h1>EU TE AMOOOOO MEU AMOOOR 🩷🤍🩵💜</h1>
-<p>só me manda msg assim que terminar de escutar</p>
-<a href="https://youtu.be/Dx7kEtMMz2s?si=eDNJso4X8sd80qhW" target="_blank" class="link">
-Ouvir música
-</a>
 </div>
 
 <script>
-
-/* BALÕES 1 ATÉ 17 */
 let numero = 1;
+let total = 17;
+let estourados = 0;
+const container = document.getElementById("paginaBaloes");
+
 function criarBalao(){
+    if(numero > total) return;
+
     const balao = document.createElement("div");
-    balao.className="balao";
-    balao.innerHTML="🎈<br>"+numero;
-    balao.onclick=function(){
+    balao.classList.add("balao");
+    balao.style.left = Math.random() * 85 + "%";
+    balao.innerText = numero;
+
+    balao.onclick = function(){
         balao.remove();
-        numero++;
-        if(numero<=17){
-            criarBalao();
-        }else{
-            document.getElementById("pagina1").classList.remove("ativa");
-            document.getElementById("pagina2").classList.add("ativa");
+        estourados++;
+        if(estourados === total){
+            mostrarMensagem();
         }
     }
-    document.getElementById("pagina1").appendChild(balao);
+
+    container.appendChild(balao);
+    numero++;
+    setTimeout(criarBalao, 800);
 }
+
+function mostrarMensagem(){
+    const msg = document.getElementById("mensagemFinal");
+    msg.style.opacity = 1;
+
+    setTimeout(()=>{
+        msg.style.opacity = 0;
+        setTimeout(()=>{
+            document.getElementById("paginaBaloes").style.display="none";
+            document.getElementById("conteudo").style.opacity = 1;
+            document.body.style.overflow="auto";
+            iniciarCoracoes();
+        },2000);
+    },3000);
+}
+
+function criarCoracao(){
+    const heart = document.createElement("div");
+    heart.classList.add("heartFall");
+    heart.innerHTML = "💗";
+    heart.style.left = Math.random()*100 + "vw";
+    heart.style.animationDuration = (3 + Math.random()*3) + "s";
+    document.body.appendChild(heart);
+    setTimeout(()=>{ heart.remove(); },6000);
+}
+
+function iniciarCoracoes(){
+    setInterval(criarCoracao, 300);
+}
+
 criarBalao();
-
-/* IR PARA PEDIDO */
-function irPedido(){
-    document.getElementById("pagina2").classList.remove("ativa");
-    document.getElementById("pagina3").classList.add("ativa");
-}
-
-/* BOTÃO NÃO FUGINDO INFINITO */
-document.getElementById("nao").addEventListener("mouseover", function(){
-    const btn=this;
-    const largura=window.innerWidth-btn.offsetWidth;
-    const altura=window.innerHeight-btn.offsetHeight;
-    btn.style.left=Math.random()*largura+"px";
-    btn.style.top=Math.random()*altura+"px";
-});
-
-/* FINAL */
-function irFinal(){
-    document.getElementById("pagina3").classList.remove("ativa");
-    document.getElementById("pagina4").classList.add("ativa");
-}
-
 </script>
 
 </body>
