@@ -13,6 +13,7 @@ body{
   text-align:center;
   color:#333;
 }
+
 .tela{
   position:absolute;
   width:100%;
@@ -23,9 +24,10 @@ body{
   align-items:center;
   padding:20px;
   transition:0.8s;
-  overflow-y:auto;
 }
+
 .hidden{opacity:0; pointer-events:none;}
+
 .fade-in{
   opacity:0;
   animation: fadeIn 2s forwards;
@@ -33,7 +35,9 @@ body{
 @keyframes fadeIn{
   to{opacity:1;}
 }
+
 h1{margin-top:20px;}
+
 button{
   padding:12px 25px;
   font-size:18px;
@@ -43,6 +47,7 @@ button{
   margin:10px;
   transition:0.3s;
 }
+
 #sim{background:#ff4da6;color:white;}
 #nao{background:#444;color:white;position:absolute;}
 #continuar{background:#ff4da6;color:white;display:none;}
@@ -101,11 +106,21 @@ button{
   flex-wrap:wrap;
 }
 
+/* Texto rolável */
 #mensagemCompleta{
   max-width:850px;
   line-height:1.6;
   display:none;
+  max-height:70vh;
+  overflow-y:auto;
+  text-align:left;
+  padding:10px;
+  scroll-behavior:smooth;
+  background: rgba(255,255,255,0.7);
+  border-radius:10px;
+  margin-top:20px;
 }
+
 #mensagemInicial{
   font-size:28px;
   font-weight:bold;
@@ -139,7 +154,6 @@ button{
 <div id="mensagemInicial" class="fade-in">Feliz aniversário, meu amor. Espero que goste 💖</div>
 <div id="mensagemCompleta">
 
-<!-- 🔥 SEU TEXTO COMPLETO -->
 <p>hoje é um dia especial, pq foi o dia em que nasceu a mulher que o mudou o meu, e desde q vc entrou na minha vida, nada mais foi igual. Voce trouxe luz, trouxe calma, trouxe amor, trouxe sentido.</p>
 
 <div class="foto-container">
@@ -148,7 +162,7 @@ button{
 <img src="Bea3.jpg" class="foto">
 </div>
 
-<p>Amor, eu nao comemoro só o seu aniversário, comemoro a sua existência, comemoro o seu sorriso que todo dia que eu vejo quando a gente vai conversar, ilumina meus dias mesmo quando tudo parecer pesado. Comemoro o jeito que vc me acalma só com sua presença, comemoro a sua força que vc me inspira a ser melhor e o jeito que vc faz eu me sentir o homem mais forte do mundo, comemoro a sua força que me inspira a ser melhor, comemoro o carinho que me faz sentir exatamente onde eu deveria estar( ao seu lado. ) que esse novo ano da sua vida venha carregado de sonhos realizados, paz no coração, metas conquistadas e momentos inesquecíveis, eu espero de verdade estar presente em todos eles, quero ser abrigo quando o mundo pesar e ser aplauso quando vc vencer, quero estar nas suas conquistas, pq suas conquistas são as minhas. obrigado por ser minha parceira. minha melhor amiga, minha companhia, minha namorada. OBRIGADO POR SER MINHA BIBIA. Voce merece o mundo inteiro meu amor, merece tudo de mais bonito que existe, mas enquanto o mundo nao cabe em uma caixa de presente, eu prometo de dar o melhor de mim todos os dias.</p>
+<p>Amor, eu nao comemoro só o seu aniversário, comemoro a sua existência, comemoro o seu sorriso que todo dia que eu vejo quando a gente vai conversar, ilumina meus dias mesmo quando tudo parecer pesado. Comemoro o jeito que vc me acalma só com sua presença, comemoro a sua força que vc me inspira a ser melhor e o jeito que vc faz eu me sentir o homem mais forte do mundo, comemoro o carinho que me faz sentir exatamente onde eu deveria estar( ao seu lado. ) que esse novo ano da sua vida venha carregado de sonhos realizados, paz no coração, metas conquistadas e momentos inesquecíveis, eu espero de verdade estar presente em todos eles, quero ser abrigo quando o mundo pesar e ser aplauso quando vc vencer, quero estar nas suas conquistas, pq suas conquistas são as minhas. obrigado por ser minha parceira. minha melhor amiga, minha companhia, minha namorada. OBRIGADO POR SER MINHA BIBIA. Voce merece o mundo inteiro meu amor, merece tudo de mais bonito que existe, mas enquanto o mundo nao cabe em uma caixa de presente, eu prometo de dar o melhor de mim todos os dias.</p>
 
 <div class="foto-container">
 <img src="Bea4.jpg" class="foto">
@@ -219,7 +233,6 @@ function irTela(n){
   if(n==4){
     document.getElementById("mensagemInicial").style.display="block";
     setTimeout(()=>document.getElementById("mensagemCompleta").style.display="block",2500);
-    soltarConfete();
   }
 }
 
@@ -247,7 +260,7 @@ function criarBalao(numero){
   let pos=-120;
   let subir=setInterval(()=>{
     if(pos>window.innerHeight/2-50) clearInterval(subir);
-    pos+=1.5; // sobe mais suavemente
+    pos+=1.5;
     balao.style.bottom=pos+"px";
   },20);
 
@@ -270,9 +283,10 @@ document.getElementById("nao").addEventListener("mouseover", fugir);
 // ACEITOU
 function aceitou(){
   irTela(4);
+  estourarConfetesECoracoes();
 }
 
-// CONFETE
+// CONFETE contínuo
 function soltarConfete(){
   for(let i=0;i<200;i++){
     let c=document.createElement("div");
@@ -283,6 +297,28 @@ function soltarConfete(){
     c.style.animationDuration=(3+Math.random()*3)+"s";
     document.body.appendChild(c);
     setTimeout(()=>c.remove(),6000);
+  }
+}
+
+// ESTOURO DE CONFETES E CORAÇÕES QUANDO CLICAR SIM
+function estourarConfetesECoracoes(){
+  for(let i=0;i<300;i++){
+    let c=document.createElement("div");
+    c.classList.add("confete");
+    let cores=["#ff4da6","#ffd700","#00c3ff","#00ff9d","#ff6600","#ffffff"];
+    c.style.backgroundColor=cores[Math.floor(Math.random()*cores.length)];
+    c.style.left=Math.random()*100+"vw";
+    c.style.animationDuration=(1+Math.random()*3)+"s";
+    document.body.appendChild(c);
+    setTimeout(()=>c.remove(),6000);
+
+    let h=document.createElement("div");
+    h.classList.add("heartFall");
+    h.innerHTML="💖";
+    h.style.left=Math.random()*100+"vw";
+    h.style.animationDuration=(1+Math.random()*3)+"s";
+    document.body.appendChild(h);
+    setTimeout(()=>h.remove(),6000);
   }
 }
 </script>
