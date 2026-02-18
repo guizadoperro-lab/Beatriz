@@ -3,237 +3,273 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Surpresa ❤️</title>
+<title>17 anos da Mulher da Minha Vida</title>
 
 <style>
 body{
-    margin:0;
-    font-family: Arial, sans-serif;
-    overflow:hidden;
+margin:0;
+font-family:Arial, sans-serif;
+overflow:hidden;
+background: linear-gradient(135deg,#ff9ecf,#e0aaff,#ffffff);
+text-align:center;
+color:#333;
 }
 
-/* TELAS */
 .tela{
-    display:none;
-    width:100%;
-    height:100vh;
+position:absolute;
+width:100%;
+height:100vh;
+display:flex;
+flex-direction:column;
+justify-content:center;
+align-items:center;
+padding:20px;
+transition:0.8s;
+overflow-y:auto;
 }
 
-.ativa{
-    display:block;
+.hidden{opacity:0; pointer-events:none;}
+
+h1{margin-top:20px;}
+
+button{
+padding:12px 25px;
+font-size:18px;
+border:none;
+border-radius:25px;
+cursor:pointer;
+margin:10px;
+transition:0.3s;
+}
+
+#sim{background:#ff4da6;color:white;}
+#nao{background:#444;color:white;position:absolute;}
+
+/* CORAÇÃO CAINDO */
+.heartFall{
+position:fixed;
+top:-10px;
+font-size:20px;
+animation:cair linear forwards;
+}
+@keyframes cair{
+to{transform:translateY(110vh);opacity:0;}
 }
 
 /* BALÕES */
-#tela1{
-    background: linear-gradient(135deg,#ff9ecf,#ffd6f6,#cde7ff);
-}
-
 .balao{
-    position:fixed;
-    bottom:-150px;
-    width:90px;
-    height:110px;
-    background: radial-gradient(circle at 50% 35%, #ff6ec7, #ff1493);
-    border-radius:50% 50% 45% 45%;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    font-size:28px;
-    font-weight:bold;
-    color:white;
-    cursor:pointer;
-    animation:subir 6s linear forwards;
+position:fixed;
+bottom:-120px;
+width:60px;
+height:80px;
+background: radial-gradient(circle at 50% 30%, #ff4da6, #ff1a75);
+border-radius:50% 50% 50% 50% / 60% 60% 40% 40%;
+color:white;
+font-weight:bold;
+font-size:24px;
+display:flex;
+align-items:center;
+justify-content:center;
+cursor:pointer;
+box-shadow:0 4px 10px rgba(0,0,0,0.3);
 }
 
-@keyframes subir{
-    from{ bottom:-150px; }
-    to{ bottom:110%; }
+/* CONFETE */
+.confete{
+position:fixed;
+width:8px;
+height:8px;
+top:-10px;
+animation:cairConfete linear forwards;
+}
+@keyframes cairConfete{
+to{transform:translateY(110vh) rotate(720deg);opacity:0;}
 }
 
-/* TEXTO */
-#tela2{
-    background:#fff0f5;
-    overflow-y:auto;
-    padding:30px;
-    text-align:center;
+/* Fotos */
+.foto{
+width:110px;
+border-radius:15px;
+margin:15px;
+box-shadow:0 4px 10px rgba(0,0,0,0.2);
+}
+.foto-container{
+display:flex;
+justify-content:center;
+flex-wrap:wrap;
 }
 
-button{
-    padding:15px 30px;
-    background:#ff1493;
-    color:white;
-    border:none;
-    border-radius:25px;
-    font-size:18px;
-    cursor:pointer;
-    margin-top:30px;
-}
-
-/* CORAÇÕES */
-.heart{
-    position:fixed;
-    top:-10px;
-    font-size:22px;
-    animation:cair linear forwards;
-    pointer-events:none;
-}
-
-@keyframes cair{
-    to{
-        transform:translateY(110vh);
-        opacity:0;
-    }
-}
-
-/* PEDIDO */
-#tela3{
-    background: linear-gradient(135deg,#ffcce0,#ffe6f2);
-    display:flex;
-    flex-direction:column;
-    justify-content:center;
-    align-items:center;
-    text-align:center;
-}
-
-#nao{
-    position:absolute;
-}
-
-/* FINAL */
-#tela4{
-    background: linear-gradient(135deg,#ffb6d9,#ffe6f5);
-    display:flex;
-    flex-direction:column;
-    justify-content:center;
-    align-items:center;
-    text-align:center;
+#mensagemCompleta{
+max-width:850px;
+line-height:1.6;
 }
 </style>
 </head>
 <body>
 
 <!-- TELA 1 -->
-<div id="tela1" class="tela ativa"></div>
+<div class="tela" id="t1">
+<h1>17 anos da mulher da minha vida 💖</h1>
+<button onclick="irTela(2)">Começar 💌</button>
+</div>
 
-<!-- TELA 2 -->
-<div id="tela2" class="tela">
-<h1>17 anos da mulher da minha vida 🤍</h1>
-<h2>19/02/2009</h2>
+<!-- TELA 2 BALÕES -->
+<div class="tela hidden" id="t2">
+<h1>Estoure os 17 balões 🎈</h1>
+</div>
 
+<!-- TELA 3 PERGUNTA -->
+<div class="tela hidden" id="t3">
+<h1>Quando você fizer 25… vai se casar comigo né? 💍</h1>
+<button id="sim" onclick="aceitou()">Sim 💍</button>
+<button id="nao">Não 😅</button>
+</div>
+
+<!-- TELA 4 MENSAGEM COMPLETA -->
+<div class="tela hidden" id="t4">
+<div id="mensagemCompleta">
+
+<!-- 🔥 SEU TEXTO INTACTO -->
 <p>hoje é um dia especial, pq foi o dia em que nasceu a mulher que o mudou o meu, e desde q vc entrou na minha vida, nada mais foi igual. Voce trouxe luz, trouxe calma, trouxe amor, trouxe sentido.</p>
+
+<div class="foto-container">
+<img src="Bea1.jpg" class="foto">
+<img src="Bea2.jpg" class="foto">
+<img src="Bea3.jpg" class="foto">
+</div>
 
 <p>Amor, eu nao comemoro só o seu aniversário, comemoro a sua existência, comemoro o seu sorriso que todo dia que eu vejo quando a gente vai conversar, ilumina meus dias mesmo quando tudo parecer pesado. Comemoro o jeito que vc me acalma só com sua presença, comemoro a sua força que vc me inspira a ser melhor e o jeito que vc faz eu me sentir o homem mais forte do mundo, comemoro a sua força que me inspira a ser melhor, comemoro o carinho que me faz sentir exatamente onde eu deveria estar( ao seu lado. ) que esse novo ano da sua vida venha carregado de sonhos realizados, paz no coração, metas conquistadas e momentos inesquecíveis, eu espero de verdade estar presente em todos eles, quero ser abrigo quando o mundo pesar e ser aplauso quando vc vencer, quero estar nas suas conquistas, pq suas conquistas são as minhas. obrigado por ser minha parceira. minha melhor amiga, minha companhia, minha namorada. OBRIGADO POR SER MINHA BIBIA. Voce merece o mundo inteiro meu amor, merece tudo de mais bonito que existe, mas enquanto o mundo nao cabe em uma caixa de presente, eu prometo de dar o melhor de mim todos os dias.</p>
 
+<div class="foto-container">
+<img src="Bea4.jpg" class="foto">
+<img src="Bea5.jpg" class="foto">
+<img src="Bea6.jpg" class="foto">
+</div>
+
 <p>E eu quero que vc nunca se esqueça bia, independente das brigas, dos dias difíceis ou das fases complicadas, eu vou estar com vc, pq amar vc nao é só nos dias leves e felizes. Amar vc é escolher ficar, é escolher conversas, é escolher crescer junto, é escolher construir algo forte. Todos os dias. Eu amo o seu jeitinho, amo a forma que vc demonstra oq sente, amo o jeito que vc cuida de mim, como vc presta atenção nos detalhes, como vc se importa. Amo como vc consegue ser tão carinhosa e tao forte ao mesmo tempo. Amo quando vc me chama de "coração". Amo cada detalhe seu, até aqueles q vc acha pequenos ou imperfeitos, pq pra mim, tudo em vc é gigante, e que a gente continue crescendo, aprendendo, amadurecendo e se escolhendo todos os dias. Q a gnt continue sendo abrigo de um do outro, pq VOCÊ é minha BIBIA, e eu sou o seu AMOR, e eu tenho muito orgulho disso, orgulho de nós, orgulho da nossa história, Orgulho da Mulher incrível que você é, Beatriz.</p>
 
-<p>Eu te amo hoje, no seu aniversário.<br>
+<div class="foto-container">
+<img src="Bea7.jpg" class="foto">
+<img src="Bea8.jpg" class="foto">
+<img src="Bea9.jpg" class="foto">
+</div>
+
+<p>
+Eu te amo hoje, no seu aniversário.<br>
 Eu te amo nos dias bons.<br>
 Eu te amo nos dias difíceis.<br>
 Eu te amo nos dias comuns.<br>
-E eu vou te amar todos os outros dias que ainda estão por vir.</p>
+E eu vou te amar todos os outros dias que ainda estão por vir.
+</p>
 
 <p>Feliz aniversário, Eu te amo Muito. Meu amor.🩷🤍🩵💜</p>
 
-<button onclick="irPedido()">Continuar ❤️</button>
+<p>
+1. Português — Eu te amo<br>
+2. Inglês — I love you<br>
+3. Espanhol — Te amo<br>
+4. Francês — Je t’aime<br>
+5. Alemão — Ich liebe dich<br>
+6. Italiano — Ti amo<br>
+7. Japonês — 愛してる (Aishiteru)<br>
+8. Chinês — 我爱你 (Wǒ ài nǐ)<br>
+9. Russo — Я тебя люблю<br>
+10. Árabe — أنا أحبك<br>
+11. Hindi — Main tumse pyaar karta hoon<br>
+12. Turco — Seni seviyorum<br>
+13. Coreano — 사랑해<br>
+14. Sueco — Jag älskar dig<br>
+15. Dinamarquês — Jeg elsker dig<br>
+16. Norueguês — Jeg elsker deg<br>
+17. Finlandês — Rakastan sinua
+</p>
+
+<p>Eu te amo em 100 línguas diferentes. Eu escrevi em português, inglês, japonês, árabe, em todas elas, mas nenhuma consegue traduzir exatamente oq eu sinto por você, minha princesa.</p>
+
+<p>Pq oq eu sinto é maior que qualquer coisa, é escolha diária, é querer vc nos meus planos de hj, de amanhã e de um futuro inteiro. Eu te amo, minha bibia. Hoje, amanhã e em todos os dias que ainda vão existir. 🤍❤️</p>
+
+</div>
+<button onclick="irTela(5)">Última surpresa 🎵</button>
 </div>
 
-<!-- TELA 3 -->
-<div id="tela3" class="tela">
-<h1>17 anos do amor da minha vida 💍</h1>
-<h2>Quando você fizer 25, vai se casar cmg né?</h2>
-<br>
-<button onclick="aceitou()">SIM 💖</button>
-<button id="nao">NÃO 😭</button>
-</div>
-
-<!-- TELA 4 -->
-<div id="tela4" class="tela">
-<h1>QUE BOM QUE VC VAI SE CASAR COMIGO 😭💖</h1>
-<h3>Agora, vc só vai me mandar msg assim que terminar essa música 👇</h3>
-<br>
-<a href="https://youtu.be/Dx7kEtMMz2s?si=eDNJso4X8sd80qhW" target="_blank">
-https://youtu.be/Dx7kEtMMz2s?si=eDNJso4X8sd80qhW
+<!-- TELA 5 LINK -->
+<div class="tela hidden" id="t5">
+<h1>Nossa música 🎵</h1>
+<a href="https://youtu.be/SEU_LINK_AQUI" target="_blank">
+<button>Ouvir agora 💖</button>
 </a>
 </div>
 
 <script>
-/* BALÕES */
-let numero=1,total=17,finalizado=false;
-function criarBalao(){
- if(numero>total)return;
- const balao=document.createElement("div");
- balao.classList.add("balao");
- balao.style.left=Math.random()*85+"%";
- balao.innerText=numero;
- balao.onclick=()=>{balao.remove();verificar();};
- balao.addEventListener("animationend",()=>{balao.remove();verificar();});
- document.getElementById("tela1").appendChild(balao);
- numero++;
- setTimeout(criarBalao,500);
+function irTela(n){
+document.querySelectorAll(".tela").forEach(t=>t.classList.add("hidden"));
+document.getElementById("t"+n).classList.remove("hidden");
+if(n==2) criarBalao(1);
+if(n==4) soltarConfete();
 }
-function verificar(){
- if(finalizado)return;
- const restantes=document.querySelectorAll(".balao").length;
- if(numero>total && restantes===0){
-  finalizado=true;
-  mudarTela("tela2");
-  iniciarCoracoes();
- }
-}
-criarBalao();
 
-/* CORAÇÕES */
+/* CORAÇÕES INICIAIS */
 function criarCoracao(){
- const heart=document.createElement("div");
- heart.classList.add("heart");
- heart.innerHTML="💗";
- heart.style.left=Math.random()*100+"vw";
- heart.style.animationDuration=(3+Math.random()*3)+"s";
- document.body.appendChild(heart);
- setTimeout(()=>heart.remove(),6000);
+let heart=document.createElement("div");
+heart.classList.add("heartFall");
+heart.innerHTML="💗";
+heart.style.left=Math.random()*100+"vw";
+heart.style.animationDuration=(3+Math.random()*3)+"s";
+document.body.appendChild(heart);
+setTimeout(()=>heart.remove(),6000);
 }
-function iniciarCoracoes(){
- setInterval(criarCoracao,300);
+setInterval(criarCoracao,300);
+
+/* BALÕES */
+let balaoAtual=1;
+function criarBalao(numero){
+let balao=document.createElement("div");
+balao.classList.add("balao");
+balao.innerHTML=numero;
+balao.style.left=Math.random()*90+"vw";
+document.body.appendChild(balao);
+
+let pos=-120;
+let subir=setInterval(()=>{
+if(pos>window.innerHeight/2-50)clearInterval(subir);
+pos+=2;
+balao.style.bottom=pos+"px";
+},20);
+
+balao.onclick=()=>{
+balao.remove();
+balaoAtual++;
+if(balaoAtual<=17) criarBalao(balaoAtual);
+else irTela(3);
+}
 }
 
-/* TROCA DE TELAS */
-function mudarTela(id){
- document.querySelectorAll(".tela").forEach(t=>t.classList.remove("ativa"));
- document.getElementById(id).classList.add("ativa");
- document.body.style.overflow = id==="tela2" ? "auto" : "hidden";
+/* BOTÃO FUGINDO */
+function fugir(){
+const botao=document.getElementById("nao");
+botao.style.left=Math.random()*80+"vw";
+botao.style.top=Math.random()*80+"vh";
 }
-
-/* CONTINUAR */
-function irPedido(){
- mudarTela("tela3");
-}
-
-/* BOTÃO NÃO FUGINDO */
-const btnNao=document.getElementById("nao");
-btnNao.addEventListener("mouseover",()=>{
- btnNao.style.top=Math.random()*80+"%";
- btnNao.style.left=Math.random()*80+"%";
-});
+document.getElementById("nao").addEventListener("mouseover", fugir);
 
 /* ACEITOU */
 function aceitou(){
- mudarTela("tela4");
- explodir();
+irTela(4);
 }
 
 /* CONFETE */
-function explodir(){
- for(let i=0;i<100;i++){
-  const c=document.createElement("div");
-  c.classList.add("heart");
-  c.innerHTML=Math.random()>0.5?"💖":"🎉";
-  c.style.left=Math.random()*100+"vw";
-  c.style.animationDuration=(2+Math.random()*2)+"s";
-  document.body.appendChild(c);
-  setTimeout(()=>c.remove(),4000);
- }
+function soltarConfete(){
+for(let i=0;i<200;i++){
+let c=document.createElement("div");
+c.classList.add("confete");
+let cores=["#ff4da6","#ffd700","#00c3ff","#00ff9d","#ff6600","#ffffff"];
+c.style.backgroundColor=cores[Math.floor(Math.random()*cores.length)];
+c.style.left=Math.random()*100+"vw";
+c.style.animationDuration=(3+Math.random()*3)+"s";
+document.body.appendChild(c);
+setTimeout(()=>c.remove(),6000);
+}
 }
 </script>
-
 </body>
 </html>
