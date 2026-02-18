@@ -68,18 +68,6 @@ button {
   to {transform: translateY(110vh); opacity:0;}
 }
 
-/* CONFETE */
-.confete {
-  position:fixed;
-  width:8px;
-  height:8px;
-  top:-10px;
-  animation:cairConfete linear forwards;
-}
-@keyframes cairConfete {
-  to {transform: translateY(110vh) rotate(720deg); opacity:0;}
-}
-
 /* FOTOS */
 .foto {
   width:110px;
@@ -202,11 +190,12 @@ function criarCoracao(){
   heart.classList.add("heartFall");
   heart.innerHTML="💗";
   heart.style.left=Math.random()*100+"vw";
-  heart.style.animationDuration=(3+Math.random()*3)+"s";
+  heart.style.animationDuration=(2 + Math.random()*2)+"s"; // mais rápido
   document.body.appendChild(heart);
   setTimeout(()=>heart.remove(),6000);
 }
-setInterval(criarCoracao,300);
+// mais corações caindo
+setInterval(criarCoracao,200); 
 
 // BALÕES
 let balaoAtual=1;
@@ -220,7 +209,7 @@ function criarBalao(numero){
   let pos=-120;
   let subir=setInterval(()=>{
     if(pos>window.innerHeight/2-50) clearInterval(subir);
-    pos+=1.5;
+    pos+=3; // balões sobem mais rápido
     balao.style.bottom=pos+"px";
   },20);
 
@@ -231,21 +220,6 @@ function criarBalao(numero){
     else irTela(3);
   }
 }
-
-// Confete contínuo
-function soltarConfete(){
-  for(let i=0;i<200;i++){
-    let c=document.createElement("div");
-    c.classList.add("confete");
-    let cores=["#ff4da6","#ffd700","#00c3ff","#00ff9d","#ff6600","#ffffff"];
-    c.style.backgroundColor=cores[Math.floor(Math.random()*cores.length)];
-    c.style.left=Math.random()*100+"vw";
-    c.style.animationDuration=(3+Math.random()*3)+"s";
-    document.body.appendChild(c);
-    setTimeout(()=>c.remove(),6000);
-  }
-}
-setInterval(soltarConfete,1000);
 </script>
 </body>
 </html>
