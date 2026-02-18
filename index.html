@@ -4,6 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>17 anos da Mulher da Minha Vida</title>
+
 <style>
 body {
   margin:0;
@@ -22,9 +23,7 @@ body {
   box-sizing:border-box;
 }
 
-.hidden {
-  display:none;
-}
+.hidden { display:none; }
 
 /* BOTÕES */
 button {
@@ -36,8 +35,6 @@ button {
   margin:10px;
   transition:0.3s;
 }
-#sim{background:#ff4da6;color:white;}
-#nao{background:#444;color:white;position:absolute;}
 
 /* BALÕES */
 .balao {
@@ -57,7 +54,7 @@ button {
   box-shadow:0 4px 10px rgba(0,0,0,0.3);
 }
 
-/* CORAÇÕES CAINDO */
+/* CORAÇÕES */
 .heartFall {
   position:fixed;
   top:-10px;
@@ -81,13 +78,49 @@ button {
   flex-wrap:wrap;
 }
 
-/* TEXTO ROLÁVEL */
 #mensagemCompleta {
   max-width:850px;
   margin:0 auto;
   line-height:1.6;
   padding:10px;
   text-align:left;
+}
+
+/* NOME BEATRIZ COM BRILHO */
+.nome-destaque{
+  color:#ff4da6;
+  font-weight:bold;
+  text-shadow:
+    0 0 5px #ff80d5,
+    0 0 10px #ff66cc,
+    0 0 20px rgba(255,102,204,0.8);
+  animation: brilho 2s ease-in-out infinite;
+}
+
+@keyframes brilho{
+  0%{ text-shadow:0 0 5px #ff80d5,0 0 10px #ff66cc,0 0 20px rgba(255,102,204,0.8);}
+  50%{ text-shadow:0 0 15px #ffd6f5,0 0 30px #ff99dd,0 0 45px rgba(255,102,204,1);}
+  100%{ text-shadow:0 0 5px #ff80d5,0 0 10px #ff66cc,0 0 20px rgba(255,102,204,0.8);}
+}
+
+/* TÍTULO GRANDE BEATRIZ */
+.titulo-beatriz{
+  font-size:50px;
+  font-weight:bold;
+  text-align:center;
+  margin-bottom:30px;
+  color:#ff4da6;
+  text-shadow:
+    0 0 10px #ff80d5,
+    0 0 20px #ff66cc,
+    0 0 40px rgba(255,102,204,0.9);
+  animation: brilhoTitulo 2s ease-in-out infinite;
+}
+
+@keyframes brilhoTitulo{
+  0%{ text-shadow:0 0 10px #ff80d5,0 0 20px #ff66cc,0 0 40px rgba(255,102,204,0.9);}
+  50%{ text-shadow:0 0 25px #ffffff,0 0 50px #ff99dd,0 0 70px rgba(255,102,204,1);}
+  100%{ text-shadow:0 0 10px #ff80d5,0 0 20px #ff66cc,0 0 40px rgba(255,102,204,0.9);}
 }
 </style>
 </head>
@@ -104,122 +137,122 @@ button {
   <h1>Estoure os balões, Meu Amor🎈</h1>
 </div>
 
-<!-- TELA MENSAGEM COMPLETA -->
+<!-- TELA MENSAGEM -->
 <div class="tela hidden" id="t3">
-  <div id="mensagemCompleta">
-    <p>hoje é um dia especial 19/02, pq foi o dia em que nasceu a mulher que o mudou o meu, e desde q vc entrou na minha vida, nada mais foi igual. Voce trouxe luz, trouxe calma, trouxe amor, trouxe sentido.</p>
+<div id="mensagemCompleta">
 
-    <div class="foto-container">
-      <img src="Bea1.jpg" class="foto">
-      <img src="Bea2.jpg" class="foto">
-      <img src="Bea3.jpg" class="foto">
-    </div>
+<h1 class="titulo-beatriz">Beatriz</h1>
 
-    <p>Amor, eu nao comemoro só o seu aniversário, comemoro a sua existência, comemoro o seu sorriso que todo dia que eu vejo quando a gente vai conversar, ilumina meus dias mesmo quando tudo parecer pesado. Comemoro o jeito que vc me acalma só com sua presença, comemoro a sua força que vc me inspira a ser melhor e o jeito que vc faz eu me sentir o homem mais forte do mundo, comemoro o carinho que me faz sentir exatamente onde eu deveria estar( ao seu lado. )que esse novo ano da sua vida venha carregado de sonhos realizados, paz no coração, metas conquistadas e momentos inesquecíveis, eu espero de verdade estar presente em todos eles, quero ser abrigo quando o mundo pesar e ser aplauso quando vc vencer, quero estar nas suas conquistas, pq suas conquistas são as minhas. obrigado por ser minha parceira. minha melhor amiga, minha companhia, minha namorada. OBRIGADO POR SER MINHA BIBIA. Voce merece o mundo inteiro meu amor, merece tudo de mais bonito que existe, mas enquanto o mundo nao cabe em uma caixa de presente, eu prometo de dar o melhor de mim todos os dias.</p>
+<p>hoje é um dia especial, pq foi o dia em que nasceu a mulher que o mudou o meu, e desde q vc entrou na minha vida, nada mais foi igual. Voce trouxe luz, trouxe calma, trouxe amor, trouxe sentido.</p>
 
-    <div class="foto-container">
-      <img src="Bea4.jpg" class="foto">
-      <img src="Bea5.jpg" class="foto">
-      <img src="Bea6.jpg" class="foto">
-    </div>
-
-    <p>E eu quero que vc nunca se esqueça bia, independente das brigas, dos dias difíceis ou das fases complicadas, eu vou estar com vc, pq amar vc nao é só nos dias leves e felizes. Amar vc é escolher ficar, é escolher conversas, é escolher crescer junto, é escolher construir algo forte. Todos os dias. Eu amo o seu jeitinho, amo a forma que vc demonstra oq sente, amo o jeito que vc cuida de mim, como vc presta atenção nos detalhes, como vc se importa. Amo como vc consegue ser tão carinhosa e tao forte ao mesmo tempo. Amo quando vc me chama de "coração". Amo cada detalhe seu, até aqueles q vc acha pequenos ou imperfeitos, pq pra mim, tudo em vc é gigante, e que a gente continue crescendo, aprendendo, amadurecendo e se escolhendo todos os dias. Q a gnt continue sendo abrigo de um do outro, pq VOCÊ é minha BIBIA, e eu sou o seu AMOR, e eu tenho muito orgulho disso, orgulho de nós, orgulho da nossa história, Orgulho da Mulher incrível que você é, Beatriz.</p>
-
-    <div class="foto-container">
-      <img src="Bea7.jpg" class="foto">
-      <img src="Bea8.jpg" class="foto">
-      <img src="Bea9.jpg" class="foto">
-    </div>
-
-    <p>Eu te amo hoje, no seu aniversário.<br>
-       Eu te amo nos dias bons.<br>
-       Eu te amo nos dias difíceis.<br>
-       Eu te amo nos dias comuns.<br>
-       E eu vou te amar todos os outros dias que ainda estão por vir.
-    </p>
-
-    <p>Feliz aniversário, Eu te amo Muito. Meu amor.🩷🤍🩵💜</p>
-
-    <p>
-    1. Português — Eu te amo<br>
-    2. Inglês — I love you<br>
-    3. Espanhol — Te amo<br>
-    4. Francês — Je t’aime<br>
-    5. Alemão — Ich liebe dich<br>
-    6. Italiano — Ti amo<br>
-    7. Japonês — 愛してる (Aishiteru)<br>
-    8. Chinês — 我爱你 (Wǒ ài nǐ)<br>
-    9. Russo — Я тебя люблю<br>
-    10. Árabe — أنا أحبك<br>
-    11. Hindi — Main tumse pyaar karta hoon<br>
-    12. Turco — Seni seviyorum<br>
-    13. Coreano — 사랑해<br>
-    14. Sueco — Jag älskar dig<br>
-    15. Dinamarquês — Jeg elsker dig<br>
-    16. Norueguês — Jeg elsker deg<br>
-    17. Finlandês — Rakastan sinua
-    </p>
-
-    <p>Eu te amo em 100 línguas diferentes. Eu escrevi em português, inglês, japonês, árabe, em todas elas, mas nenhuma consegue traduzir exatamente oq eu sinto por você, minha princesa.</p>
-
-    <p>Pq oq eu sinto é maior que qualquer coisa, é escolha diária, é querer vc nos meus planos de hj, de amanhã e de um futuro inteiro. Eu te amo, minha bibia. Hoje, amanhã e em todos os dias que ainda vão existir. 🤍❤️</p>
-
-    <button onclick="irTela(4)">Última surpresa 🎵</button>
-  </div>
+<div class="foto-container">
+<img src="Bea1.jpg" class="foto">
+<img src="Bea2.jpg" class="foto">
+<img src="Bea3.jpg" class="foto">
 </div>
 
-<!-- TELA LINK -->
+<p>Amor, eu nao comemoro só o seu aniversário, comemoro a sua existência, comemoro o seu sorriso que todo dia que eu vejo quando a gente vai conversar, ilumina meus dias mesmo quando tudo parecer pesado. Comemoro o jeito que vc me acalma só com sua presença, comemoro a sua força que vc me inspira a ser melhor e o jeito que vc faz eu me sentir o homem mais forte do mundo, comemoro o carinho que me faz sentir exatamente onde eu deveria estar( ao seu lado. )que esse novo ano da sua vida venha carregado de sonhos realizados, paz no coração, metas conquistadas e momentos inesquecíveis, eu espero de verdade estar presente em todos eles, quero ser abrigo quando o mundo pesar e ser aplauso quando vc vencer, quero estar nas suas conquistas, pq suas conquistas são as minhas. obrigado por ser minha parceira. minha melhor amiga, minha companhia, minha namorada. OBRIGADO POR SER MINHA BIBIA. Voce merece o mundo inteiro meu amor, merece tudo de mais bonito que existe, mas enquanto o mundo nao cabe em uma caixa de presente, eu prometo de dar o melhor de mim todos os dias.</p>
+
+<div class="foto-container">
+<img src="Bea4.jpg" class="foto">
+<img src="Bea5.jpg" class="foto">
+<img src="Bea6.jpg" class="foto">
+</div>
+
+<p>E eu quero que vc nunca se esqueça bia, independente das brigas, dos dias difíceis ou das fases complicadas, eu vou estar com vc, pq amar vc nao é só nos dias leves e felizes. Amar vc é escolher ficar, é escolher conversas, é escolher crescer junto, é escolher construir algo forte. Todos os dias. Eu amo o seu jeitinho, amo a forma que vc demonstra oq sente, amo o jeito que vc cuida de mim, como vc presta atenção nos detalhes, como vc se importa. Amo como vc consegue ser tão carinhosa e tao forte ao mesmo tempo. Amo quando vc me chama de "coração". Amo cada detalhe seu, até aqueles q vc acha pequenos ou imperfeitos, pq pra mim, tudo em vc é gigante, e que a gente continue crescendo, aprendendo, amadurecendo e se escolhendo todos os dias. Q a gnt continue sendo abrigo de um do outro, pq VOCÊ é minha BIBIA, e eu sou o seu AMOR, e eu tenho muito orgulho disso, orgulho de nós, orgulho da nossa história, Orgulho da Mulher incrível que você é, <span class="nome-destaque">Beatriz</span>.</p>
+
+<div class="foto-container">
+<img src="Bea7.jpg" class="foto">
+<img src="Bea8.jpg" class="foto">
+<img src="Bea9.jpg" class="foto">
+</div>
+
+<p>Eu te amo hoje, no seu aniversário.<br>
+Eu te amo nos dias bons.<br>
+Eu te amo nos dias difíceis.<br>
+Eu te amo nos dias comuns.<br>
+E eu vou te amar todos os outros dias que ainda estão por vir.
+</p>
+
+<p>Feliz aniversário, Eu te amo Muito. Meu amor.🩷🤍🩵💜</p>
+
+<p>
+<span style="color:#ff4d6d;font-weight:bold;">1.</span> Português — Eu te amo<br>
+<span style="color:#ff85a1;font-weight:bold;">2.</span> Inglês — I love you<br>
+<span style="color:#ff99c8;font-weight:bold;">3.</span> Espanhol — Te amo<br>
+<span style="color:#c77dff;font-weight:bold;">4.</span> Francês — Je t’aime<br>
+<span style="color:#9d4edd;font-weight:bold;">5.</span> Alemão — Ich liebe dich<br>
+<span style="color:#7b2cbf;font-weight:bold;">6.</span> Italiano — Ti amo<br>
+<span style="color:#5a189a;font-weight:bold;">7.</span> Japonês — 愛してる (Aishiteru)<br>
+<span style="color:#ff006e;font-weight:bold;">8.</span> Chinês — 我爱你 (Wǒ ài nǐ)<br>
+<span style="color:#fb5607;font-weight:bold;">9.</span> Russo — Я тебя люблю<br>
+<span style="color:#ffbe0b;font-weight:bold;">10.</span> Árabe — أنا أحبك<br>
+<span style="color:#8338ec;font-weight:bold;">11.</span> Hindi — Main tumse pyaar karta hoon<br>
+<span style="color:#3a86ff;font-weight:bold;">12.</span> Turco — Seni seviyorum<br>
+<span style="color:#06d6a0;font-weight:bold;">13.</span> Coreano — 사랑해<br>
+<span style="color:#ef476f;font-weight:bold;">14.</span> Sueco — Jag älskar dig<br>
+<span style="color:#f72585;font-weight:bold;">15.</span> Dinamarquês — Jeg elsker dig<br>
+<span style="color:#b5179e;font-weight:bold;">16.</span> Norueguês — Jeg elsker deg<br>
+<span style="color:#7209b7;font-weight:bold;">17.</span> Finlandês — Rakastan sinua
+</p>
+
+<p>Eu te amo em 100 línguas diferentes. Eu escrevi em português, inglês, japonês, árabe, em todas elas, mas nenhuma consegue traduzir exatamente oq eu sinto por você, minha princesa.</p>
+
+<p>Pq oq eu sinto é maior que qualquer coisa, é escolha diária, é querer vc nos meus planos de hj, de amanhã e de um futuro inteiro. Eu te amo, minha bibia. Hoje, amanhã e em todos os dias que ainda vão existir. 🤍❤️</p>
+
+<button onclick="irTela(4)">Última surpresa 🎵</button>
+
+</div>
+</div>
+
 <div class="tela hidden" id="t4">
-  <h1>Me manda mensagem assim que terminar de ouvir. 🎵</h1>
-  <a href="https://youtu.be/Dx7kEtMMz2s?si=eDNJso4X8sd80qhW" target="_blank">
-    <button>Ouvir agora 💖</button>
-  </a>
+<h1>Me manda mensagem assim que terminar de ouvir. 🎵</h1>
+<a href="https://youtu.be/Dx7kEtMMz2s?si=eDNJso4X8sd80qhW" target="_blank">
+<button>Ouvir agora 💖</button>
+</a>
 </div>
 
 <script>
-// Navegação
 function irTela(n){
-  document.querySelectorAll(".tela").forEach(t=>t.classList.add("hidden"));
-  document.getElementById("t"+n).classList.remove("hidden");
-  if(n==2) criarBalao(1);
+document.querySelectorAll(".tela").forEach(t=>t.classList.add("hidden"));
+document.getElementById("t"+n).classList.remove("hidden");
+if(n==2) criarBalao(1);
 }
 
-// Corações caindo
 function criarCoracao(){
-  let heart=document.createElement("div");
-  heart.classList.add("heartFall");
-  heart.innerHTML="💗";
-  heart.style.left=Math.random()*100+"vw";
-  heart.style.animationDuration=(2 + Math.random()*2)+"s"; // mais rápido
-  document.body.appendChild(heart);
-  setTimeout(()=>heart.remove(),6000);
+let heart=document.createElement("div");
+heart.classList.add("heartFall");
+heart.innerHTML="💗";
+heart.style.left=Math.random()*100+"vw";
+heart.style.animationDuration=(2 + Math.random()*2)+"s";
+document.body.appendChild(heart);
+setTimeout(()=>heart.remove(),6000);
 }
-// mais corações caindo
-setInterval(criarCoracao,200); 
+setInterval(criarCoracao,200);
 
-// BALÕES
 let balaoAtual=1;
 function criarBalao(numero){
-  let balao=document.createElement("div");
-  balao.classList.add("balao");
-  balao.innerHTML=numero;
-  balao.style.left=Math.random()*90+"vw";
-  document.getElementById("t2").appendChild(balao);
+let balao=document.createElement("div");
+balao.classList.add("balao");
+balao.innerHTML=numero;
+balao.style.left=Math.random()*90+"vw";
+document.getElementById("t2").appendChild(balao);
 
-  let pos=-120;
-  let subir=setInterval(()=>{
-    if(pos>window.innerHeight/2-50) clearInterval(subir);
-    pos+=3; // balões sobem mais rápido
-    balao.style.bottom=pos+"px";
-  },20);
+let pos=-120;
+let subir=setInterval(()=>{
+if(pos>window.innerHeight/2-50) clearInterval(subir);
+pos+=3;
+balao.style.bottom=pos+"px";
+},20);
 
-  balao.onclick=()=>{
-    balao.remove();
-    balaoAtual++;
-    if(balaoAtual<=17) criarBalao(balaoAtual);
-    else irTela(3);
-  }
+balao.onclick=()=>{
+balao.remove();
+balaoAtual++;
+if(balaoAtual<=17) criarBalao(balaoAtual);
+else irTela(3);
+}
 }
 </script>
+
 </body>
-</html>
+  </html>
