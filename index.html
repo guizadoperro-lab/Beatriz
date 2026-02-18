@@ -12,25 +12,39 @@ body{
     font-family: Arial, sans-serif;
     background: linear-gradient(135deg, #ff9ecf, #ffd6f6, #cde7ff);
     text-align:center;
-    overflow-x:hidden;
+    overflow:hidden;
 }
 
-h1{
-    margin-top:40px;
+/* PÁGINAS */
+.pagina{ display:none; }
+.ativa{ display:block; }
+
+/* BALÃO */
+.balao{
+    position:fixed;
+    bottom:-150px;
+    left:50%;
+    transform:translateX(-50%);
+    font-size:80px;
+    cursor:pointer;
+    animation:subir 2.5s linear forwards;
+}
+
+@keyframes subir{
+    to{ bottom:120%; }
 }
 
 /* DATA COM BRILHO SUAVE */
 .data{
-    font-size:22px;
-    margin-top:-10px;
-    margin-bottom:20px;
-    animation: brilhoRespirar 3s ease-in-out infinite;
+    font-size:42px;
+    margin-top:40px;
+    animation:respirar 3s ease-in-out infinite;
 }
 
-@keyframes brilhoRespirar{
-    0%{ text-shadow: 0 0 6px rgba(255,255,255,0.3); }
-    50%{ text-shadow: 0 0 20px rgba(255,255,255,0.9); }
-    100%{ text-shadow: 0 0 6px rgba(255,255,255,0.3); }
+@keyframes respirar{
+    0%{ text-shadow:0 0 10px rgba(255,255,255,0.3); }
+    50%{ text-shadow:0 0 25px rgba(255,255,255,0.9); }
+    100%{ text-shadow:0 0 10px rgba(255,255,255,0.3); }
 }
 
 button{
@@ -40,14 +54,9 @@ button{
     border-radius:25px;
     cursor:pointer;
     margin:10px;
-    transition:0.3s;
 }
 
-#sim{
-    background:#ff4da6;
-    color:white;
-}
-
+#sim{ background:#ff4da6; color:white; }
 #nao{
     background:#444;
     color:white;
@@ -55,8 +64,7 @@ button{
 }
 
 #mensagemCompleta{
-    display:none;
-    margin-top:40px;
+    margin-top:30px;
     font-size:18px;
     line-height:1.6;
     max-width:850px;
@@ -76,31 +84,9 @@ button{
     justify-content:center;
     flex-wrap:wrap;
 }
-
-/* BALÕES NÚMEROS */
-.balaoNumero{
-    position:fixed;
-    bottom:-60px;
-    font-size:48px;
-    animation: subirNumero linear forwards;
-}
-
-@keyframes subirNumero{
-    to{
-        transform: translateY(-110vh);
-        opacity:0;
-    }
-}
-
-/* LINK MÚSICA */
-.linkMusica{
-    margin-top:40px;
-    font-size:18px;
-}
-
-.linkMusica a{
+.link{
     display:inline-block;
-    margin-top:10px;
+    margin-top:20px;
     padding:12px 25px;
     background:#ff4da6;
     color:white;
@@ -112,13 +98,14 @@ button{
 
 <body>
 
+<!-- PAGINA 1 - BALÕES -->
+<div id="pagina1" class="pagina ativa"></div>
+
+<!-- PAGINA 2 - TEXTO COMPLETO -->
+<div id="pagina2" class="pagina">
+
 <h1>17 anos da mulher da minha vida 🤍</h1>
 <div class="data">19/02/2009</div>
-
-<p id="pergunta">Quando você fizer 25… vai se casar comigo né? 💍</p>
-
-<button id="sim" onclick="aceitou()">Sim 💍</button>
-<button id="nao">Não 😅</button>
 
 <div id="mensagemCompleta">
 
@@ -180,52 +167,69 @@ E eu vou te amar todos os outros dias que ainda estão por vir.
 
 <p>Pq oq eu sinto é maior que qualquer coisa, é escolha diária, é querer vc nos meus planos de hj, de amanhã e de um futuro inteiro. Eu te amo, minha bibia. Hoje, amanhã e em todos os dias que ainda vão existir. 🤍❤️</p>
 
-<div class="linkMusica">
-<p><strong>só me manda mensagem depois que escutar a musica 🎶</strong></p>
-<a href="https://youtu.be/Dx7kEtMMz2s?si=eDNJso4X8sd80qhW" target="_blank">
-Ouvir Música no YouTube
-</a>
 </div>
 
+<button onclick="irPedido()">Continuar</button>
+</div>
+
+<!-- PAGINA 3 PEDIDO -->
+<div id="pagina3" class="pagina">
+<h1>17 ANOS DO AMOR DA MINHA VIDA 🤍</h1>
+<p>quando vc fizer 25... vai se casar comigo né? 💍</p>
+<button id="sim" onclick="irFinal()">Sim 💍</button>
+<button id="nao">Não 😅</button>
+</div>
+
+<!-- PAGINA 4 FINAL -->
+<div id="pagina4" class="pagina">
+<h1>EU TE AMOOOOO MEU AMOOOR 🩷🤍🩵💜</h1>
+<p>só me manda msg assim que terminar de escutar</p>
+<a href="https://youtu.be/Dx7kEtMMz2s?si=eDNJso4X8sd80qhW" target="_blank" class="link">
+Ouvir música
+</a>
 </div>
 
 <script>
 
-function criarBaloesNumero(){
-    const numeros = ["1","7"];
-    numeros.forEach(num=>{
-        let balao = document.createElement("div");
-        balao.classList.add("balaoNumero");
-        balao.innerHTML = "🎈" + num;
-        balao.style.left = Math.random()*100 + "vw";
-        balao.style.animationDuration = (3 + Math.random()*1.5) + "s";
-        document.body.appendChild(balao);
-        setTimeout(()=>{ balao.remove(); },5000);
-    });
+/* BALÕES 1 ATÉ 17 */
+let numero = 1;
+function criarBalao(){
+    const balao = document.createElement("div");
+    balao.className="balao";
+    balao.innerHTML="🎈<br>"+numero;
+    balao.onclick=function(){
+        balao.remove();
+        numero++;
+        if(numero<=17){
+            criarBalao();
+        }else{
+            document.getElementById("pagina1").classList.remove("ativa");
+            document.getElementById("pagina2").classList.add("ativa");
+        }
+    }
+    document.getElementById("pagina1").appendChild(balao);
+}
+criarBalao();
+
+/* IR PARA PEDIDO */
+function irPedido(){
+    document.getElementById("pagina2").classList.remove("ativa");
+    document.getElementById("pagina3").classList.add("ativa");
 }
 
-setInterval(criarBaloesNumero, 1800);
-
-function fugir(){
-    const botao = document.getElementById("nao");
-    const largura = window.innerWidth - botao.offsetWidth - 20;
-    const altura = window.innerHeight - botao.offsetHeight - 20;
-    botao.style.position = "fixed";
-    botao.style.left = Math.random() * largura + "px";
-    botao.style.top = Math.random() * altura + "px";
-}
-
-document.getElementById("nao").addEventListener("mouseover", fugir);
-document.getElementById("nao").addEventListener("click", function(e){
-    e.preventDefault();
-    fugir();
+/* BOTÃO NÃO FUGINDO INFINITO */
+document.getElementById("nao").addEventListener("mouseover", function(){
+    const btn=this;
+    const largura=window.innerWidth-btn.offsetWidth;
+    const altura=window.innerHeight-btn.offsetHeight;
+    btn.style.left=Math.random()*largura+"px";
+    btn.style.top=Math.random()*altura+"px";
 });
 
-function aceitou(){
-    document.getElementById("pergunta").style.display = "none";
-    document.getElementById("sim").style.display = "none";
-    document.getElementById("nao").style.display = "none";
-    document.getElementById("mensagemCompleta").style.display = "block";
+/* FINAL */
+function irFinal(){
+    document.getElementById("pagina3").classList.remove("ativa");
+    document.getElementById("pagina4").classList.add("ativa");
 }
 
 </script>
